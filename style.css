@@ -701,3 +701,63 @@ nav a:hover {
 
     font-size: 13px;
 }
+/* ==================================================
+   WHY GREENOX
+   ================================================== */
+
+.why {
+
+    background-color: white;
+
+    padding-top: 100px;
+
+    padding-bottom: 100px;
+}
+
+
+.features {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.feature {
+
+    flex: 1;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+.feature-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+
+.feature h3 {
+
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+
+.feature p {
+
+    color: #666;
+
+    font-size: 14px;
+}
