@@ -875,4 +875,329 @@ footer p {
 
     margin-top: 10px;
 }
+/* ==================================================
+   TABLET
+   ================================================== */
 
+@media (max-width: 850px) {
+
+
+    /* HEADER */
+
+    header {
+
+        width: 94%;
+
+        left: 3%;
+
+        padding: 0 25px;
+    }
+
+
+    nav {
+
+        gap: 20px;
+    }
+
+
+    /* HERO */
+
+    .hero h1 {
+
+        font-size: 70px;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+
+        min-height: auto;
+
+        padding: 120px 6% 90px;
+    }
+
+
+    .about-container {
+
+        flex-direction: column;
+
+        gap: 50px;
+
+        text-align: center;
+    }
+
+
+    .about-text h3 {
+
+        font-size: 32px;
+    }
+
+
+    .promise-box {
+
+        width: 100%;
+
+        max-width: 450px;
+    }
+
+
+    /* MENU */
+
+    .menu-categories {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FEATURES */
+
+    .features {
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 600px) {
+
+
+    /* ================= HEADER ================= */
+
+    header {
+
+        height: 60px;
+
+        width: 94%;
+
+        top: 10px;
+
+        left: 3%;
+
+        padding: 0 18px;
+
+        border-radius: 35px;
+    }
+
+
+    .logo {
+
+        font-size: 22px;
+    }
+
+
+    nav {
+
+        gap: 10px;
+    }
+
+
+    nav a {
+
+        font-size: 11px;
+    }
+
+
+    /* ================= SCROLL ================= */
+
+    section {
+
+        scroll-margin-top: 85px;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+
+        height: 100vh;
+
+        min-height: 100vh;
+    }
+
+
+    .hero h1 {
+
+        font-size: 52px;
+    }
+
+
+    .hero h2 {
+
+        font-size: 18px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .welcome {
+
+        font-size: 11px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .location {
+
+        font-size: 14px;
+    }
+
+
+    .tagline {
+
+        font-size: 16px;
+    }
+
+
+    /* ================= BUTTON ================= */
+
+    .button {
+
+        padding: 10px 22px;
+
+        font-size: 14px;
+    }
+
+
+    /* ================= ABOUT ================= */
+
+    .about {
+
+        padding: 100px 6% 70px;
+
+        min-height: auto;
+    }
+
+
+    .section-title {
+
+        margin-bottom: 35px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 32px;
+    }
+
+
+    .about-container {
+
+        gap: 35px;
+    }
+
+
+    .about-text h3 {
+
+        font-size: 27px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .about-text p {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    /* ================= PROMISE BOX ================= */
+
+    .promise-box {
+
+        width: 100%;
+
+        min-height: 300px;
+
+        padding: 40px 25px;
+    }
+
+
+    .leaf {
+
+        font-size: 55px;
+    }
+
+
+    .promise-box h3 {
+
+        font-size: 24px;
+    }
+
+
+    .promise-box p {
+
+        font-size: 15px;
+    }
+
+
+    /* ================= MENU ================= */
+
+    .menu,
+    .why,
+    .contact {
+
+        padding: 70px 6%;
+    }
+
+
+    .menu-category summary {
+
+        font-size: 16px;
+
+        padding: 18px;
+    }
+
+
+    .food-item {
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+
+    .food-item h4 {
+
+        font-size: 14px;
+    }
+
+
+    .food-item p {
+
+        font-size: 11px;
+    }
+
+
+    .food-item strong {
+
+        font-size: 12px;
+
+        padding: 5px 10px;
+    }
+
+
+    /* ================= CONTACT ================= */
+
+    .contact h2 {
+
+        font-size: 32px;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .footer-logo {
+
+        font-size: 24px;
+    }
+
+}
