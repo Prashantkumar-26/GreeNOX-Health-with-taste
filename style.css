@@ -276,3 +276,41 @@ nav a:hover {
 
     transform: translateY(-3px);
 }
+/* ================= HERO ANIMATION ================= */
+
+@keyframes popUp {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(70px) scale(0.8);
+    }
+
+
+    70% {
+
+        opacity: 1;
+
+        transform: translateY(-8px) scale(1.03);
+    }
+
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ================= NORMAL SECTIONS ================= */
+
+.about,
+.menu,
+.why,
+.contact {
+
+    padding: 80px 8%;
+}
