@@ -164,3 +164,29 @@ nav a:hover {
 
     background-color: rgba(0, 0, 0, 0.48);
 }
+/* ================= HERO CONTENT ================= */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 20px;
+
+    animation: popUp 1.2s ease;
+}
+
+
+.welcome {
+
+    font-size: 15px;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 12px;
+}
