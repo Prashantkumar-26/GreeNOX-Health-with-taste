@@ -27,3 +27,81 @@ body {
     line-height: 1.6;
 
 }
+/* ================= HEADER ================= */
+
+header {
+
+    height: 75px;
+
+    width: 100%;
+
+    background-color: rgb(222, 245, 205);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 8%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+
+}
+
+
+.logo {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #173d24;
+
+}
+
+
+.logo span {
+
+    color: #76a92d;
+
+}
+
+
+nav {
+
+    display: flex;
+
+    gap: 35px;
+
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #173d24;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+
+}
+
+
+nav a:hover {
+
+    color: #76a92d;
+
+}
+
+
