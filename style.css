@@ -368,3 +368,91 @@ nav a:hover {
 
     margin-top: 7px;
 }
+/* ================= ABOUT CONTAINER ================= */
+
+.about-container {
+
+    max-width: 1200px;
+
+    width: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 100px;
+}
+
+
+/* ================= ABOUT TEXT ================= */
+
+.about-text {
+
+    flex: 1;
+}
+
+
+.about-text h3 {
+
+    font-size: 38px;
+
+    margin-bottom: 25px;
+
+    line-height: 1.2;
+}
+
+
+.about-text p {
+
+    color: #666;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+
+.about-text .button {
+
+    margin-top: 10px;
+}
+
+
+/* ================= PROMISE BOX ================= */
+
+.promise-box {
+
+    width: 400px;
+
+    min-height: 350px;
+
+    background-color: #edf5df;
+
+    padding: 55px 40px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    border: 2px solid #d8e8bd;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* ================= LEAF ================= */
+
+.leaf {
+
+    font-size: 65px;
+
+    margin-bottom: 10px;
+}
