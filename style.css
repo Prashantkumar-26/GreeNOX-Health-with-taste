@@ -64,3 +64,49 @@ header {
 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
 }
+/* ================= LOGO ================= */
+
+.logo {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    color: #76a92d;
+}
+
+
+.logo span {
+
+    color: white;
+}
+
+
+/* ================= NAVIGATION ================= */
+
+nav {
+
+    display: flex;
+
+    gap: 35px;
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #eaeeeb;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+
+nav a:hover {
+
+    color: #76a92d;
+}
