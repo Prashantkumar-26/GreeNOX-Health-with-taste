@@ -216,3 +216,63 @@ nav a:hover {
 
     letter-spacing: 3px;
 }
+/* ================= LOCATION ================= */
+
+.location {
+
+    display: inline-block;
+
+    margin-top: 25px;
+
+    background-color: rgba(0, 0, 0, 0.50);
+
+    padding: 9px 22px;
+
+    border-radius: 30px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* ================= TAGLINE ================= */
+
+.tagline {
+
+    font-size: 18px;
+
+    font-style: italic;
+
+    margin: 20px 0;
+}
+
+
+/* ================= BUTTON ================= */
+
+.button {
+
+    display: inline-block;
+
+    background-color: #76a92d;
+
+    color: white;
+
+    padding: 12px 27px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.button:hover {
+
+    background-color: #557d24;
+
+    transform: translateY(-3px);
+}
