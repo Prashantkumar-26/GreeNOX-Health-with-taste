@@ -761,3 +761,71 @@ nav a:hover {
 
     font-size: 14px;
 }
+/* ==================================================
+   CONTACT
+   ================================================== */
+
+.contact {
+
+    background-color: #173d24;
+
+    color: white;
+
+    text-align: center;
+
+    padding-top: 100px;
+
+    padding-bottom: 100px;
+}
+
+
+.contact-content {
+
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+.contact-small {
+
+    color: #8bc34a;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+.contact h2 {
+
+    font-size: 40px;
+
+    margin: 10px 0;
+}
+
+
+/* ================= CONTACT GREE ================= */
+
+.contact h2 span {
+
+    color: #76a92d;
+}
+
+
+/* ================= CONTACT LOCATION ================= */
+
+.location-box {
+
+    max-width: 450px;
+
+    margin: 25px auto;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background-color: rgba(255, 255, 255, 0.10);
+}
