@@ -829,3 +829,50 @@ nav a:hover {
 
     background-color: rgba(255, 255, 255, 0.10);
 }
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+footer {
+
+    background-color: #102a19;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 30px;
+}
+
+
+/* ================= FOOTER LOGO ================= */
+
+.footer-logo {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #76a92d;
+}
+
+
+.footer-logo span {
+
+    color: white;
+}
+
+
+footer p {
+
+    color: #c7d4c9;
+}
+
+
+.copyright {
+
+    font-size: 12px;
+
+    margin-top: 10px;
+}
+
