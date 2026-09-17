@@ -190,3 +190,19 @@ nav a:hover {
 
     margin-bottom: 12px;
 }
+/* ================= HERO LOGO ================= */
+
+.hero h1 {
+
+    font-size: 90px;
+
+    line-height: 1;
+
+    color: #76a92d;
+}
+
+
+.hero h1 span {
+
+    color: white;
+}
