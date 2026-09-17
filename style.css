@@ -478,3 +478,226 @@ nav a:hover {
 
     margin: 5px;
 }
+/* ==================================================
+   MENU
+   ================================================== */
+
+.menu {
+
+    background-color: #f7f9f2;
+
+    padding-top:20px;
+
+    padding-bottom: 100px;
+}
+
+
+/* ================= MENU GRID ================= */
+
+.menu-categories {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* ================= MENU CATEGORY ================= */
+
+.menu-category {
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid #dce6cf;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: 0.3s;
+
+    align-self: start;
+
+    height: fit-content;
+}
+
+
+.menu-category:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.11);
+}
+
+
+/* ================= MENU HEADING ================= */
+
+.menu-category summary {
+
+    padding: 22px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    color: #173d24;
+
+    transition: 0.3s;
+}
+
+
+.menu-category summary:hover {
+
+    background-color: #edf5df;
+}
+
+
+/* ================= REMOVE DEFAULT ARROW ================= */
+
+.menu-category summary::-webkit-details-marker {
+
+    display: none;
+}
+
+
+/* ================= ARROW ================= */
+
+.arrow {
+
+    color: #76a92d;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+
+/* ================= ROTATE ARROW ================= */
+
+.menu-category[open] .arrow {
+
+    transform: rotate(180deg);
+}
+
+
+/* ================= MENU ITEMS ================= */
+
+.items {
+
+    padding: 5px 20px 20px;
+
+    border-top: 1px solid #e5ecd9;
+
+    animation: openMenu 0.3s ease;
+}
+
+
+.food-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 16px 5px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.food-item:last-child {
+
+    border-bottom: none;
+}
+
+
+.food-item h4 {
+
+    font-size: 15px;
+
+    margin-bottom: 2px;
+}
+
+
+.food-item p {
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+.food-item strong {
+
+    background-color: #edf5df;
+
+    color: #557d24;
+
+    border-radius: 20px;
+
+    padding: 6px 12px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+
+/* ================= MENU ANIMATION ================= */
+
+@keyframes openMenu {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-7px);
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ================= GST ================= */
+
+.gst-note {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    color: #777;
+
+    font-style: italic;
+
+    font-size: 13px;
+}
