@@ -456,3 +456,25 @@ nav a:hover {
 
     margin-bottom: 10px;
 }
+/* ================= PROMISE HEADING ================= */
+
+.promise-box h3 {
+
+    font-size: 28px;
+
+    margin: 10px 0 20px;
+}
+
+
+/* ================= PROMISE TEXT ================= */
+
+.promise-box p {
+
+    color: #557d24;
+
+    font-weight: bold;
+
+    font-size: 17px;
+
+    margin: 5px;
+}
