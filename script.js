@@ -38,3 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const cart = new Map();
 
     let lastCreatedOrderId = "";
+
+
+        // =========================================
+    // CHECK REQUIRED HTML ELEMENTS
+    // =========================================
+
+    if (
+        !form ||
+        !cartContainer ||
+        !totalElement ||
+        !orderItemsField ||
+        !orderTotalField
+    ) {
+        console.error(
+            "GreenOx setup error: Check the order form and cart HTML IDs."
+        );
+        return;
+    }
+
+    if (!menu) {
+        console.warn(
+            'GreenOx: No element with class="menu" was found. ' +
+            "Add buttons with class add-to-order and check your menu section."
+        );
+    }
+
