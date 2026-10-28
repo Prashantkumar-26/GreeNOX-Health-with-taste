@@ -1,603 +1,984 @@
-document.addEventListener("DOMContentLoaded", () => {
-    "use strict";
 
-    // =========================================
-    // GREENOX CONFIGURATION
-    // =========================================
+/* =========================================================
+   GREENOX HEALTHY FOOD CAFE
+   Complete script.js
+   Features:
+   1. Add menu items to cart
+   2. Save cart between index.html and order.html
+   3. Increase and decrease item quantities
+   4. Remove items from cart
+   5. Calculate order total
+   6. Validate Indian mobile numbers
+   7. Select payment method
+   8. Submit order
+   9. Export order details as JSON
+   10. Track orders using order ID
+   ========================================================= */
 
-    const STORAGE_KEY = "greenox_demo_order_tracking_v1";
 
-    const form = document.getElementById("greenoxOrderForm");
-    const menu = document.querySelector(".menu");
-    const cartContainer = document.getElementById("cartItems");
-    const totalElement = document.getElementById("cartTotal");
-    const orderItemsField = document.getElementById("orderItems");
-    const orderTotalField = document.getElementById("orderTotal");
+/* =========================
+   STORAGE KEYS
+   ========================= */
 
-    const phoneInput = document.getElementById("phoneNumber");
-    const phoneError = document.getElementById("phoneError");
-    const orderMessage = document.getElementById("orderMessage");
+const CART_STORAGE_KEY = "greenox_cart";
+const ORDER_STORAGE_KEY = "greenox_demo_order_tracking_v1";
 
-    const latestOrder = document.getElementById("latestOrder");
-    const createdOrderId = document.getElementById("createdOrderId");
-    const createdOrderStatus = document.getElementById("createdOrderStatus");
-    const copyOrderButton = document.getElementById("copyOrderId");
 
-    const trackingForm = document.getElementById("trackingForm");
-    const trackingOrderId = document.getElementById("trackingOrderId");
-    const trackingResult = document.getElementById("trackingResult");
+/* =========================
+   CART
+   ========================= */
 
-    const currency = new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+const cart = new Map();
+
+
+/* =========================
+   HELPER FUNCTIONS
+   ========================= */
+
+function getElement(id) {
+    return document.getElementById(id);
+}
+
+
+function formatPrice(amount) {
+    return "₹" + Number(amount).toFixed(2);
+}
+
+
+function saveCart() {
+    try {
+        const cartData = Array.from(cart.values());
+
+        localStorage.setItem(
+            CART_STORAGE_KEY,
+            JSON.stringify(cartData)
+        );
+    } catch (error) {
+        console.error("Could not save the cart:", error);
+    }
+}
+
+
+function loadCart() {
+    try {
+        const savedCart = JSON.parse(
+            localStorage.getItem(CART_STORAGE_KEY) || "[]"
+        );
+
+        if (!Array.isArray(savedCart)) {
+            return;
+        }
+
+        cart.clear();
+
+        savedCart.forEach(function (item) {
+            if (
+                item &&
+                typeof item.name === "string" &&
+                item.name.trim() !== "" &&
+                Number.isFinite(Number(item.price)) &&
+                Number(item.price) >= 0 &&
+                Number.isInteger(Number(item.quantity)) &&
+                Number(item.quantity) > 0
+            ) {
+                const name = item.name.trim();
+
+                cart.set(name, {
+                    name: name,
+                    price: Number(item.price),
+                    quantity: Number(item.quantity)
+                });
+            }
+        });
+    } catch (error) {
+        console.error("Could not load the saved cart:", error);
+        cart.clear();
+    }
+}
+
+
+function getCartTotal() {
+    let total = 0;
+
+    cart.forEach(function (item) {
+        total += item.price * item.quantity;
     });
 
-    // A Map holds each product and its quantity.
-    const cart = new Map();
-
-    let lastCreatedOrderId = "";
+    return total;
+}
 
 
-        // =========================================
-    // CHECK REQUIRED HTML ELEMENTS
-    // =========================================
+function getCartQuantity() {
+    let quantity = 0;
+
+    cart.forEach(function (item) {
+        quantity += item.quantity;
+    });
+
+    return quantity;
+}
+
+
+function getCartData() {
+    return Array.from(cart.values()).map(function (item) {
+        return {
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            subtotal: item.price * item.quantity
+        };
+    });
+}
+
+
+/* =========================
+   ADD ITEM TO CART
+   ========================= */
+
+function addToCart(name, price) {
+    name = String(name || "").trim();
+    price = Number(price);
 
     if (
-        !form ||
-        !cartContainer ||
-        !totalElement ||
-        !orderItemsField ||
-        !orderTotalField
+        name === "" ||
+        !Number.isFinite(price) ||
+        price < 0
     ) {
-        console.error(
-            "GreenOx setup error: Check the order form and cart HTML IDs."
-        );
+        console.error("Invalid menu item:", name, price);
         return;
     }
 
-    if (!menu) {
-        console.warn(
-            'GreenOx: No element with class="menu" was found. ' +
-            "Add buttons with class add-to-order and check your menu section."
-        );
-    }
-
- // =========================================
-    // PHONE NUMBER VALIDATION
-    // =========================================
-
-    function isValidIndianPhone(number) {
-        return /^[6-9]\d{9}$/.test(number);
-    }
-
-    if (phoneInput) {
-        phoneInput.addEventListener("input", () => {
-            // Only keep the first 10 digits.
-            phoneInput.value = phoneInput.value
-                .replace(/\D/g, "")
-                .slice(0, 10);
-
-            if (phoneError) {
-                phoneError.textContent = "";
-            }
-
-            phoneInput.setCustomValidity("");
-        });
-
-        phoneInput.addEventListener("blur", () => {
-            if (
-                phoneInput.value &&
-                !isValidIndianPhone(phoneInput.value)
-            ) {
-                showPhoneError();
-            }
-        });
-    }
-
-    function showPhoneError() {
-        const message =
-            "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.";
-
-        if (phoneError) {
-            phoneError.textContent = message;
-        }
-
-        if (phoneInput) {
-            phoneInput.setCustomValidity(message);
-        }
-    }
-
-    // =========================================
-    // CART: ADD MENU ITEMS
-    // =========================================
-
-    // Use document-level delegation so the buttons still work
-    // if the menu is nested inside other HTML elements.
-    document.addEventListener("click", (event) => {
-        const button = event.target.closest(".add-to-order");
-
-        if (!button) {
-            return;
-        }
-
-        if (menu && !menu.contains(button)) {
-            return;
-        }
-
-        const name = (button.dataset.item || "").trim();
-        const price = Number(button.dataset.price);
-
-        if (
-            !name ||
-            button.dataset.price === undefined ||
-            button.dataset.price.trim() === "" ||
-            !Number.isFinite(price) ||
-            price < 0
-        ) {
-            alert(
-                "This menu item is missing a valid name or price. " +
-                "Check its data-item and data-price attributes."
-            );
-            return;
-        }
-
+    if (cart.has(name)) {
         const existingItem = cart.get(name);
 
-        if (existingItem) {
-            // Prevent accidental use of two different prices
-            // for the same product name.
-            if (existingItem.price !== price) {
-                alert(
-                    "This item has inconsistent prices in the menu. " +
-                    "Please check its data-price value."
-                );
-                return;
-            }
+        existingItem.quantity += 1;
 
-            existingItem.quantity += 1;
-        } else {
-            cart.set(name, {
-                name,
-                price,
-                quantity: 1
-            });
-        }
-
-        renderCart();
-
-        const originalText = button.dataset.originalText || "Add +";
-        button.dataset.originalText = originalText;
-        button.textContent = "Added ✓";
-
-        window.setTimeout(() => {
-            button.textContent = originalText;
-        }, 700);
-    });
-
-    // =========================================
-    // CART: QUANTITY AND REMOVE BUTTONS
-    // =========================================
-
-    cartContainer.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-cart-action]");
-
-        if (!button) {
-            return;
-        }
-
-        const name = button.dataset.name;
-        const action = button.dataset.cartAction;
-        const item = cart.get(name);
-
-        if (!item) {
-            return;
-        }
-
-        if (action === "increase") {
-            item.quantity += 1;
-        } else if (action === "decrease") {
-            item.quantity -= 1;
-
-            if (item.quantity <= 0) {
-                cart.delete(name);
-            }
-        } else if (action === "remove") {
-            cart.delete(name);
-        }
-
-        renderCart();
-    });
-
-    function makeCartButton(label, action, itemName, className) {
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.textContent = label;
-        button.dataset.cartAction = action;
-        button.dataset.name = itemName;
-        button.className = className || "cart-action";
-
-        return button;
+        cart.set(name, existingItem);
+    } else {
+        cart.set(name, {
+            name: name,
+            price: price,
+            quantity: 1
+        });
     }
 
-    // =========================================
-    // RENDER CART AND CALCULATE TOTAL
-    // =========================================
+    saveCart();
+    renderCart();
+}
 
-    function renderCart() {
-        cartContainer.replaceChildren();
 
-        let total = 0;
-        const orderLines = [];
+/* =========================
+   CHANGE ITEM QUANTITY
+   ========================= */
 
-        if (cart.size === 0) {
+function increaseQuantity(name) {
+    if (!cart.has(name)) {
+        return;
+    }
+
+    const item = cart.get(name);
+
+    item.quantity += 1;
+
+    cart.set(name, item);
+
+    saveCart();
+    renderCart();
+}
+
+
+function decreaseQuantity(name) {
+    if (!cart.has(name)) {
+        return;
+    }
+
+    const item = cart.get(name);
+
+    item.quantity -= 1;
+
+    if (item.quantity <= 0) {
+        cart.delete(name);
+    } else {
+        cart.set(name, item);
+    }
+
+    saveCart();
+    renderCart();
+}
+
+
+/* =========================
+   REMOVE ITEM FROM CART
+   ========================= */
+
+function removeFromCart(name) {
+    if (!cart.has(name)) {
+        return;
+    }
+
+    cart.delete(name);
+
+    saveCart();
+    renderCart();
+}
+
+
+/* =========================
+   DISPLAY CART
+   ========================= */
+
+function renderCart() {
+    const cartItemsElement = getElement("cartItems");
+    const cartTotalElement = getElement("cartTotal");
+
+    const orderItemsElement = getElement("orderItems");
+    const orderTotalElement = getElement("orderTotal");
+
+    const total = getCartTotal();
+    const cartData = getCartData();
+
+    /*
+       Update the cart list if this page contains it.
+    */
+
+    if (cartItemsElement) {
+        cartItemsElement.replaceChildren();
+
+        if (cartData.length === 0) {
             const emptyMessage = document.createElement("p");
 
-            emptyMessage.className = "empty-cart";
-            emptyMessage.textContent =
-                "No items added yet. Choose something from the menu!";
+            emptyMessage.textContent = "Your cart is empty.";
 
-            cartContainer.appendChild(emptyMessage);
-        }
+            cartItemsElement.appendChild(emptyMessage);
+        } else {
+            cartData.forEach(function (item) {
+                const cartItem = document.createElement("div");
 
-        cart.forEach((item) => {
-            const lineTotal = item.price * item.quantity;
-            total += lineTotal;
+                cartItem.className = "cart-item";
 
-            orderLines.push(
-                `${item.name} x ${item.quantity} - ${currency.format(lineTotal)}`
-            );
+                const itemDetails = document.createElement("div");
 
-            const row = document.createElement("div");
-            row.className = "cart-item";
+                itemDetails.className = "cart-item-details";
 
-            const details = document.createElement("div");
-            details.className = "cart-item-details";
+                const itemName = document.createElement("strong");
 
-            const title = document.createElement("strong");
-            title.textContent = item.name;
+                itemName.textContent = item.name;
 
-            const price = document.createElement("span");
-            price.textContent = `${currency.format(item.price)} each`;
+                const itemPrice = document.createElement("p");
 
-            details.append(title, price);
+                itemPrice.textContent =
+                    formatPrice(item.price) + " each";
 
-            const controls = document.createElement("div");
-            controls.className = "cart-controls";
+                const itemSubtotal = document.createElement("p");
 
-            const minus = makeCartButton(
-                "−",
-                "decrease",
-                item.name
-            );
-            minus.setAttribute("aria-label", `Remove one ${item.name}`);
+                itemSubtotal.textContent =
+                    "Subtotal: " +
+                    formatPrice(item.price * item.quantity);
 
-            const quantity = document.createElement("span");
-            quantity.className = "cart-quantity";
-            quantity.textContent = String(item.quantity);
+                itemDetails.appendChild(itemName);
+                itemDetails.appendChild(itemPrice);
+                itemDetails.appendChild(itemSubtotal);
 
-            const plus = makeCartButton(
-                "+",
-                "increase",
-                item.name
-            );
-            plus.setAttribute("aria-label", `Add one ${item.name}`);
+                const controls = document.createElement("div");
 
-            controls.append(minus, quantity, plus);
+                controls.className = "cart-controls";
 
-            const subtotal = document.createElement("strong");
-            subtotal.className = "cart-subtotal";
-            subtotal.textContent = currency.format(lineTotal);
+                const decreaseButton =
+                    document.createElement("button");
 
-            const remove = makeCartButton(
-                "Remove",
-                "remove",
-                item.name,
-                "cart-remove"
-            );
+                decreaseButton.type = "button";
+                decreaseButton.textContent = "−";
+                decreaseButton.setAttribute(
+                    "aria-label",
+                    "Decrease quantity of " + item.name
+                );
+                decreaseButton.dataset.cartAction = "decrease";
+                decreaseButton.dataset.itemName = item.name;
 
-            remove.setAttribute("aria-label", `Remove ${item.name}`);
+                const quantityDisplay =
+                    document.createElement("span");
 
-            row.append(details, controls, subtotal, remove);
-            cartContainer.appendChild(row);
-        });
+                quantityDisplay.textContent = item.quantity;
 
-        // The total is displayed only in the payment area.
-        totalElement.textContent = currency.format(total);
+                const increaseButton =
+                    document.createElement("button");
 
-        // Hidden fields are included in the downloaded order record.
-        orderItemsField.value = orderLines.join("\n");
-        orderTotalField.value = total.toFixed(2);
-    }
+                increaseButton.type = "button";
+                increaseButton.textContent = "+";
+                increaseButton.setAttribute(
+                    "aria-label",
+                    "Increase quantity of " + item.name
+                );
+                increaseButton.dataset.cartAction = "increase";
+                increaseButton.dataset.itemName = item.name;
 
-    // =========================================
-    // ORDER ID AND BROWSER STORAGE
-    // =========================================
+                const removeButton =
+                    document.createElement("button");
 
-    function generateOrderId() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
+                removeButton.type = "button";
+                removeButton.textContent = "Remove";
+                removeButton.dataset.cartAction = "remove";
+                removeButton.dataset.itemName = item.name;
 
-        const randomPart = Math.random()
-            .toString(36)
-            .slice(2, 8)
-            .toUpperCase()
-            .padEnd(6, "0");
+                controls.appendChild(decreaseButton);
+                controls.appendChild(quantityDisplay);
+                controls.appendChild(increaseButton);
+                controls.appendChild(removeButton);
 
-        return `GX-${year}${month}${day}-${randomPart}`;
-    }
+                cartItem.appendChild(itemDetails);
+                cartItem.appendChild(controls);
 
-    function readSavedOrders() {
-        try {
-            const stored = localStorage.getItem(STORAGE_KEY);
-
-            if (!stored) {
-                return [];
-            }
-
-            const parsed = JSON.parse(stored);
-            return Array.isArray(parsed) ? parsed : [];
-        } catch (error) {
-            console.error("Could not read demo order records:", error);
-            return [];
-        }
-    }
-
-    function saveOrder(order) {
-        const orders = readSavedOrders();
-
-        // Most recent order first.
-        orders.unshift(order);
-
-        try {
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(orders)
-            );
-
-            return true;
-        } catch (error) {
-            console.error("Could not save demo order:", error);
-            return false;
-        }
-    }
-
-    // =========================================
-    // DOWNLOAD ORDER AS JSON
-    // =========================================
-
-    function downloadJSON(data, filename) {
-        const json = JSON.stringify(data, null, 2);
-        const blob = new Blob([json], {
-            type: "application/json;charset=utf-8"
-        });
-
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-
-        link.href = url;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        window.setTimeout(() => {
-            URL.revokeObjectURL(url);
-        }, 1000);
-    }
-
-    function getFormValue(name) {
-        const field = form.elements.namedItem(name);
-        return field ? field.value.trim() : "";
-    }
-
-    // =========================================
-    // SUBMIT ORDER
-    // =========================================
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        if (cart.size === 0) {
-            orderMessage.textContent =
-                "Please add at least one item from the menu before placing your order.";
-            orderMessage.style.color = "#b42318";
-            cartContainer.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
+                cartItemsElement.appendChild(cartItem);
             });
-            return;
         }
+    }
 
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
+    /*
+       Update the cart total if this element exists.
+    */
+
+    if (cartTotalElement) {
+        cartTotalElement.textContent = formatPrice(total);
+    }
+
+    /*
+       Update the order summary if these elements exist.
+    */
+
+    if (orderItemsElement) {
+        orderItemsElement.replaceChildren();
+
+        if (cartData.length === 0) {
+            const emptyMessage = document.createElement("p");
+
+            emptyMessage.textContent = "No items added to your order.";
+
+            orderItemsElement.appendChild(emptyMessage);
+        } else {
+            cartData.forEach(function (item) {
+                const orderItem = document.createElement("p");
+
+                orderItem.textContent =
+                    item.name +
+                    " × " +
+                    item.quantity +
+                    " — " +
+                    formatPrice(item.price * item.quantity);
+
+                orderItemsElement.appendChild(orderItem);
+            });
         }
+    }
 
-        const phone = phoneInput ? phoneInput.value.trim() : "";
+    if (orderTotalElement) {
+        orderTotalElement.textContent = formatPrice(total);
+    }
 
-        if (!isValidIndianPhone(phone)) {
-            showPhoneError();
+    /*
+       Update any optional cart-count elements.
+    */
 
-            if (phoneInput) {
-                phoneInput.reportValidity();
-                phoneInput.focus();
-            }
+    const cartCountElements =
+        document.querySelectorAll("[data-cart-count]");
 
-            return;
-        }
+    cartCountElements.forEach(function (element) {
+        element.textContent = getCartQuantity();
+    });
+}
 
-        // Recalculate from the cart rather than trusting form values.
-        let total = 0;
 
-        const items = Array.from(cart.values()).map((item) => {
-            const subtotal = item.price * item.quantity;
-            total += subtotal;
+/* =========================
+   INDIAN PHONE VALIDATION
+   ========================= */
 
-            return {
-                name: item.name,
-                unitPrice: item.price,
-                quantity: item.quantity,
-                subtotal: Number(subtotal.toFixed(2))
-            };
-        });
+function validateIndianPhone(phone) {
+    /*
+       Accept exactly 10 digits.
+       The first digit must be between 6 and 9.
+       Spaces and a leading +91 are accepted.
+    */
 
-        const orderId = generateOrderId();
-        const now = new Date();
+    let cleanedPhone = String(phone || "").trim();
 
-        const order = {
-            orderId,
-            orderDate: now.toISOString(),
-            customerName: getFormValue("customerName"),
-            phoneCountryCode: "+91",
-            phoneNumber: "+91" + phone,
-            deliveryAddress: getFormValue("deliveryAddress"),
-            items,
-            orderItems: orderItemsField.value,
-            orderTotal: Number(total.toFixed(2)),
-            currency: "INR",
-            paymentMethod: getFormValue("paymentMethod"),
-            paymentStatus: "Not processed - demo website",
-            orderStatus: "Received - demo only",
-            orderNotes: getFormValue("orderNotes")
-        };
+    cleanedPhone = cleanedPhone.replace(/[\s()-]/g, "");
 
-        // Save the order locally and download its JSON.
-        const saved = saveOrder(order);
+    if (cleanedPhone.startsWith("+91")) {
+        cleanedPhone = cleanedPhone.substring(3);
+    } else if (cleanedPhone.startsWith("91") &&
+               cleanedPhone.length === 12) {
+        cleanedPhone = cleanedPhone.substring(2);
+    }
 
-        downloadJSON(
-            order,
-            `greenox_order_${orderId}.json`
+    return /^[6-9]\d{9}$/.test(cleanedPhone);
+}
+
+
+function getCleanIndianPhone(phone) {
+    let cleanedPhone = String(phone || "").trim();
+
+    cleanedPhone = cleanedPhone.replace(/[\s()-]/g, "");
+
+    if (cleanedPhone.startsWith("+91")) {
+        cleanedPhone = cleanedPhone.substring(3);
+    } else if (
+        cleanedPhone.startsWith("91") &&
+        cleanedPhone.length === 12
+    ) {
+        cleanedPhone = cleanedPhone.substring(2);
+    }
+
+    return cleanedPhone;
+}
+
+
+function showPhoneError(message) {
+    const phoneError = getElement("phoneError");
+
+    if (phoneError) {
+        phoneError.textContent = message;
+    }
+}
+
+
+/* =========================
+   ORDER STORAGE
+   ========================= */
+
+function getSavedOrders() {
+    try {
+        const savedOrders = JSON.parse(
+            localStorage.getItem(ORDER_STORAGE_KEY) || "[]"
         );
 
-        lastCreatedOrderId = orderId;
+        return Array.isArray(savedOrders) ? savedOrders : [];
+    } catch (error) {
+        console.error("Could not load saved orders:", error);
+        return [];
+    }
+}
 
-        createdOrderId.textContent = orderId;
-        createdOrderStatus.textContent = order.orderStatus;
-        latestOrder.hidden = false;
 
-        orderMessage.textContent = saved
-            ? "Your demo order has been created and its JSON file downloaded."
-            : "Your order JSON was downloaded, but browser storage was unavailable.";
+function saveOrders(orders) {
+    try {
+        localStorage.setItem(
+            ORDER_STORAGE_KEY,
+            JSON.stringify(orders)
+        );
 
-        orderMessage.style.color = saved ? "#426f1c" : "#b42318";
+        return true;
+    } catch (error) {
+        console.error("Could not save orders:", error);
+        return false;
+    }
+}
 
-        latestOrder.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
 
-        // Clear the cart after the order has been recorded.
+function generateOrderId() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+
+    const day = String(now.getDate()).padStart(2, "0");
+
+    const randomPart = Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+    return "GX-" + year + month + day + "-" + randomPart;
+}
+
+
+/* =========================
+   JSON EXPORT
+   ========================= */
+
+function downloadOrderJSON(order) {
+    const jsonContent = JSON.stringify(order, null, 2);
+
+    const blob = new Blob(
+        [jsonContent],
+        { type: "application/json" }
+    );
+
+    const downloadURL = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement("a");
+
+    downloadLink.href = downloadURL;
+    downloadLink.download = order.orderId + ".json";
+
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+
+    downloadLink.remove();
+
+    URL.revokeObjectURL(downloadURL);
+}
+
+
+/* =========================
+   DISPLAY ORDER MESSAGE
+   ========================= */
+
+function showOrderMessage(message, isError) {
+    const orderMessage = getElement("orderMessage");
+
+    if (!orderMessage) {
+        return;
+    }
+
+    orderMessage.textContent = message;
+
+    orderMessage.style.color = isError ? "red" : "green";
+}
+
+
+/* =========================
+   ORDER SUBMISSION
+   ========================= */
+
+const greenoxOrderForm = getElement("greenoxOrderForm");
+
+if (greenoxOrderForm) {
+    greenoxOrderForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        showOrderMessage("", false);
+        showPhoneError("");
+
+        /*
+           Check that the cart contains items.
+        */
+
+        if (cart.size === 0) {
+            showOrderMessage(
+                "Please add at least one item to your cart.",
+                true
+            );
+
+            return;
+        }
+
+        /*
+           Read customer details.
+        */
+
+        const customerNameElement = getElement("customerName");
+        const phoneNumberElement = getElement("phoneNumber");
+        const deliveryAddressElement = getElement("deliveryAddress");
+        const orderNotesElement = getElement("orderNotes");
+        const paymentMethodElement = getElement("paymentMethod");
+
+        const customerName = customerNameElement
+            ? customerNameElement.value.trim()
+            : "";
+
+        const phoneNumber = phoneNumberElement
+            ? phoneNumberElement.value.trim()
+            : "";
+
+        const deliveryAddress = deliveryAddressElement
+            ? deliveryAddressElement.value.trim()
+            : "";
+
+        const orderNotes = orderNotesElement
+            ? orderNotesElement.value.trim()
+            : "";
+
+        const paymentMethod = paymentMethodElement
+            ? paymentMethodElement.value
+            : "";
+
+        /*
+           Validate required customer information.
+        */
+
+        if (customerName === "") {
+            showOrderMessage(
+                "Please enter your name.",
+                true
+            );
+
+            if (customerNameElement) {
+                customerNameElement.focus();
+            }
+
+            return;
+        }
+
+        if (!validateIndianPhone(phoneNumber)) {
+            showPhoneError(
+                "Enter a valid Indian mobile number with exactly 10 digits."
+            );
+
+            if (phoneNumberElement) {
+                phoneNumberElement.focus();
+            }
+
+            return;
+        }
+
+        if (deliveryAddress === "") {
+            showOrderMessage(
+                "Please enter your delivery address.",
+                true
+            );
+
+            if (deliveryAddressElement) {
+                deliveryAddressElement.focus();
+            }
+
+            return;
+        }
+
+        if (paymentMethod === "") {
+            showOrderMessage(
+                "Please select a payment method.",
+                true
+            );
+
+            if (paymentMethodElement) {
+                paymentMethodElement.focus();
+            }
+
+            return;
+        }
+
+        /*
+           Prepare the order.
+        */
+
+        const orderId = generateOrderId();
+
+        const orderDate = new Date().toISOString();
+
+        const order = {
+            orderId: orderId,
+            orderDate: orderDate,
+            customer: {
+                name: customerName,
+                phone: getCleanIndianPhone(phoneNumber),
+                address: deliveryAddress
+            },
+            items: getCartData(),
+            total: getCartTotal(),
+            paymentMethod: paymentMethod,
+            notes: orderNotes,
+            status: "Order Placed"
+        };
+
+        /*
+           Save order details in browser storage.
+        */
+
+        const orders = getSavedOrders();
+
+        orders.push(order);
+
+        const savedSuccessfully = saveOrders(orders);
+
+        if (!savedSuccessfully) {
+            showOrderMessage(
+                "The order could not be saved in browser storage. Please try again.",
+                true
+            );
+
+            return;
+        }
+
+        /*
+           Export the order as a JSON file.
+        */
+
+        downloadOrderJSON(order);
+
+        /*
+           Display the generated order ID and status.
+        */
+
+        const createdOrderId = getElement("createdOrderId");
+        const createdOrderStatus = getElement("createdOrderStatus");
+        const latestOrder = getElement("latestOrder");
+
+        if (createdOrderId) {
+            createdOrderId.textContent = order.orderId;
+        }
+
+        if (createdOrderStatus) {
+            createdOrderStatus.textContent = order.status;
+        }
+
+        if (latestOrder) {
+            latestOrder.hidden = false;
+        }
+
+        showOrderMessage(
+            "Your order has been placed successfully. Your order ID is " +
+            order.orderId +
+            ". Save the downloaded JSON file for your records.",
+            false
+        );
+
+        /*
+           Clear the cart after successful order submission.
+        */
+
         cart.clear();
+
+        localStorage.removeItem(CART_STORAGE_KEY);
+
         renderCart();
 
-        // Reset customer inputs, but leave the confirmation visible.
-        form.reset();
+        /*
+           Reset the form after saving the order.
+        */
 
-        if (phoneError) {
-            phoneError.textContent = "";
-        }
+        greenoxOrderForm.reset();
 
-        if (phoneInput) {
-            phoneInput.setCustomValidity("");
+        showPhoneError("");
+    });
+}
+
+
+/* =========================
+   PHONE INPUT VALIDATION
+   ========================= */
+
+const phoneNumberInput = getElement("phoneNumber");
+
+if (phoneNumberInput) {
+    phoneNumberInput.addEventListener("input", function () {
+        const phone = phoneNumberInput.value.trim();
+
+        if (phone === "" || validateIndianPhone(phone)) {
+            showPhoneError("");
+        } else {
+            showPhoneError(
+                "Enter a valid Indian mobile number with exactly 10 digits."
+            );
         }
     });
+}
 
-    // =========================================
-    // COPY ORDER ID
-    // =========================================
 
-    if (copyOrderButton) {
-        copyOrderButton.addEventListener("click", async () => {
-            if (!lastCreatedOrderId) {
-                return;
-            }
+/* =========================
+   ORDER TRACKING
+   ========================= */
 
-            try {
-                await navigator.clipboard.writeText(lastCreatedOrderId);
-                copyOrderButton.textContent = "Copied ✓";
-            } catch (error) {
-                // Fallback for browsers that block clipboard access.
-                if (trackingOrderId) {
-                    trackingOrderId.value = lastCreatedOrderId;
-                    trackingOrderId.focus();
-                    trackingOrderId.select();
-                }
+function displayTrackingResult(order, message) {
+    const trackingResult = getElement("trackingResult");
 
-                copyOrderButton.textContent =
-                    "Order ID selected below";
-            }
-
-            window.setTimeout(() => {
-                copyOrderButton.textContent = "Copy Order ID";
-            }, 1800);
-        });
+    if (!trackingResult) {
+        return;
     }
 
-    // =========================================
-    // TRACK ORDER
-    // =========================================
+    trackingResult.replaceChildren();
 
-    if (trackingForm) {
-        trackingForm.addEventListener("submit", (event) => {
-            event.preventDefault();
+    if (!order) {
+        const errorMessage = document.createElement("p");
 
-            const enteredId = trackingOrderId.value.trim().toUpperCase();
-            const orders = readSavedOrders();
+        errorMessage.textContent = message;
 
-            const order = orders.find(
-                (savedOrder) =>
-                    String(savedOrder.orderId).toUpperCase() === enteredId
-            );
+        trackingResult.appendChild(errorMessage);
 
-            trackingResult.replaceChildren();
-
-            if (!order) {
-                const message = document.createElement("p");
-
-                message.textContent =
-                    "Order not found in this browser. Check the ID or use the browser where the order was placed.";
-
-                trackingResult.appendChild(message);
-                return;
-            }
-
-            const heading = document.createElement("h4");
-            heading.textContent = "Order Found";
-
-            const idLine = document.createElement("p");
-            idLine.textContent = `Order ID: ${order.orderId}`;
-
-            const statusLine = document.createElement("p");
-            statusLine.textContent = `Status: ${order.orderStatus}`;
-
-            const totalLine = document.createElement("p");
-            totalLine.textContent =
-                `Total Amount: ${currency.format(order.orderTotal)}`;
-
-            const paymentLine = document.createElement("p");
-            paymentLine.textContent =
-                `Payment: ${order.paymentMethod} — ${order.paymentStatus}`;
-
-            const notice = document.createElement("small");
-            notice.textContent =
-                "Demo tracking: status is stored locally and does not update from a live kitchen or delivery service.";
-
-            trackingResult.append(
-                heading,
-                idLine,
-                statusLine,
-                totalLine,
-                paymentLine,
-                notice
-            );
-        });
+        return;
     }
 
-    // Render the empty cart when the page first loads.
-    renderCart();
+    const orderIdElement = document.createElement("p");
+
+    orderIdElement.textContent = "Order ID: " + order.orderId;
+
+    const statusElement = document.createElement("p");
+
+    statusElement.textContent = "Status: " + order.status;
+
+    const totalElement = document.createElement("p");
+
+    totalElement.textContent = "Total: " + formatPrice(order.total);
+
+    const dateElement = document.createElement("p");
+
+    dateElement.textContent =
+        "Order Date: " +
+        new Date(order.orderDate).toLocaleString();
+
+    trackingResult.appendChild(orderIdElement);
+    trackingResult.appendChild(statusElement);
+    trackingResult.appendChild(totalElement);
+    trackingResult.appendChild(dateElement);
+}
+
+
+const trackingForm = getElement("trackingForm");
+
+if (trackingForm) {
+    trackingForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const trackingOrderId = getElement("trackingOrderId");
+
+        if (!trackingOrderId) {
+            return;
+        }
+
+        const requestedOrderId =
+            trackingOrderId.value.trim().toUpperCase();
+
+        if (requestedOrderId === "") {
+            displayTrackingResult(
+                null,
+                "Please enter your order ID."
+            );
+
+            return;
+        }
+
+        const orders = getSavedOrders();
+
+        const matchedOrder = orders.find(function (order) {
+            return (
+                String(order.orderId).toUpperCase() ===
+                requestedOrderId
+            );
+        });
+
+        if (!matchedOrder) {
+            displayTrackingResult(
+                null,
+                "Order not found. Check your order ID and try again."
+            );
+
+            return;
+        }
+
+        displayTrackingResult(matchedOrder);
+    });
+}
+
+
+/* =========================
+   COPY ORDER ID
+   ========================= */
+
+const copyOrderIdButton = getElement("copyOrderId");
+
+if (copyOrderIdButton) {
+    copyOrderIdButton.addEventListener("click", async function () {
+        const createdOrderId = getElement("createdOrderId");
+
+        if (!createdOrderId) {
+            return;
+        }
+
+        const orderId = createdOrderId.textContent.trim();
+
+        if (orderId === "") {
+            return;
+        }
+
+        try {
+            await navigator.clipboard.writeText(orderId);
+
+            copyOrderIdButton.textContent = "Copied";
+        } catch (error) {
+            console.error("Could not copy the order ID:", error);
+
+            showOrderMessage(
+                "Please copy your order ID manually: " + orderId,
+                false
+            );
+        }
+    });
+}
+
+
+
+
+
+/* =========================
+   MENU BUTTON EVENTS
+   ========================= */
+
+function updateAddButton(button) {
+    const itemName = button.dataset.item;
+
+    if (!itemName) {
+        return;
+    }
+
+    if (cart.has(itemName)) {
+        button.textContent = "Added ✓";
+        button.classList.add("item-added");
+        button.setAttribute("aria-label", itemName + " added to order");
+    } else {
+        button.textContent = "Add +";
+        button.classList.remove("item-added");
+        button.setAttribute("aria-label", "Add " + itemName + " to order");
+    }
+}
+
+
+function updateAllAddButtons() {
+    document.querySelectorAll(".add-to-order").forEach(function (button) {
+        updateAddButton(button);
+    });
+}
+
+
+document.addEventListener("click", function (event) {
+    const addButton = event.target.closest(".add-to-order");
+
+    if (addButton) {
+        const itemName = addButton.dataset.item;
+        const itemPrice = addButton.dataset.price;
+
+        if (!itemName || itemPrice === undefined) {
+            return;
+        }
+
+        addToCart(itemName, itemPrice);
+
+        updateAllAddButtons();
+
+        addButton.textContent = "Added ✓";
+        addButton.classList.add("item-added");
+
+        return;
+    }
+
+    const cartButton = event.target.closest("[data-cart-action]");
+
+    if (!cartButton) {
+        return;
+    }
+
+    const action = cartButton.dataset.cartAction;
+    const itemName = cartButton.dataset.itemName;
+
+    if (action === "increase") {
+        increaseQuantity(itemName);
+    } else if (action === "decrease") {
+        decreaseQuantity(itemName);
+    } else if (action === "remove") {
+        removeFromCart(itemName);
+    }
+
+    updateAllAddButtons();
 });
+
+/* =========================
+   INITIALIZE SCRIPT
+   ========================= */
+
+loadCart();
+renderCart();
+updateAllAddButtons();
+
+
+
+
+
