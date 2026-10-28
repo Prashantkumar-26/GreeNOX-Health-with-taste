@@ -1201,3 +1201,339 @@ footer p {
     }
 
 }
+
+
+
+
+/* =========================================
+   GREENOX ORDER FORM AND INTEGRATED CART
+   Append this to the end of style.css
+========================================= */
+
+.order-section {
+    padding: 70px 20px;
+    background: #f5f8f0;
+}
+
+.order-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.order-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.order-eyebrow {
+    color: #76a92b;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.order-heading h2 {
+    color: #19452b;
+    font-size: clamp(30px, 5vw, 44px);
+    margin: 12px 0;
+}
+
+.order-heading h2 span {
+    color: #76a92b;
+}
+
+#greenoxOrderForm,
+.latest-order,
+.tracking-box {
+    background: #ffffff;
+    border: 1px solid #e0e9d8;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(25, 69, 43, 0.06);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #19452b;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border: 1px solid #d6e0cf;
+    border-radius: 9px;
+    background: #fff;
+    color: #26382b;
+    font: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 2px solid #a7cc75;
+    outline-offset: 1px;
+}
+
+.phone-input {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.phone-prefix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 1px solid #d6e0cf;
+    border-radius: 9px;
+    background: #f0f6e9;
+    color: #19452b;
+    font-weight: 700;
+}
+
+.phone-input input {
+    min-width: 0;
+    flex: 1;
+}
+
+.field-error {
+    color: #b42318;
+    font-size: 13px;
+}
+
+/* Order details remain inside the form */
+.order-details {
+    margin-bottom: 28px;
+    padding: 20px;
+    background: #f8faf5;
+    border: 1px solid #e0e9d8;
+    border-radius: 13px;
+}
+
+.order-details h3,
+.latest-order h3,
+.tracking-box h3 {
+    margin-top: 0;
+    color: #19452b;
+}
+
+.cart-items {
+    width: 100%;
+}
+
+.empty-cart {
+    margin: 0;
+    padding: 12px 0;
+    color: #6d756d;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #e1e9d9;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.cart-item-details strong {
+    color: #19452b;
+    overflow-wrap: anywhere;
+}
+
+.cart-item-details span {
+    color: #777;
+    font-size: 13px;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.cart-action {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 4px 9px;
+    background: #fff;
+    border: 1px solid #d5e2ca;
+    border-radius: 8px;
+    color: #19452b;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.cart-quantity {
+    min-width: 16px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.cart-subtotal {
+    color: #588c24;
+    white-space: nowrap;
+}
+
+.cart-remove {
+    grid-column: 2 / 4;
+    justify-self: end;
+    border: none;
+    background: transparent;
+    color: #c0392b;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.add-to-order {
+    padding: 9px 14px;
+    background: #76a92b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.add-to-order:hover,
+.order-submit:hover {
+    filter: brightness(0.94);
+}
+
+/* Total is displayed only under Payment Method */
+.payment-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    padding: 20px;
+    background: #eef7e6;
+    border: 1px solid #d4e8bd;
+    border-radius: 12px;
+    color: #19452b;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.payment-total strong {
+    color: #588c24;
+    font-size: 24px;
+    white-space: nowrap;
+}
+
+.order-submit {
+    width: 100%;
+    padding: 14px 18px;
+    background: #588c24;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.order-message {
+    margin-bottom: 0;
+}
+
+.latest-order,
+.tracking-box {
+    margin-top: 25px;
+}
+
+.latest-order[hidden] {
+    display: none !important;
+}
+
+.latest-order > strong {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #eef7e6;
+    border-radius: 8px;
+    color: #426f1c;
+    overflow-wrap: anywhere;
+}
+
+.demo-notice {
+    color: #686868;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.tracking-result {
+    margin-top: 15px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .order-section {
+        padding: 45px 14px;
+    }
+
+    #greenoxOrderForm,
+    .latest-order,
+    .tracking-box {
+        padding: 17px;
+    }
+
+    .order-details {
+        padding: 14px;
+    }
+
+    .cart-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+    }
+
+    .cart-controls {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .cart-subtotal {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .cart-remove {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .payment-total {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .payment-total strong {
+        font-size: 21px;
+    }
+}
+
