@@ -1205,6 +1205,17 @@ footer p {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 /* =========================================
    GREENOX ORDER FORM AND INTEGRATED CART
    Append this to the end of style.css
@@ -1537,3 +1548,61 @@ footer p {
     }
 }
 
+
+
+
+
+
+
+
+
+
+/* Navigation button sizing */
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 18px;
+    min-height: 40px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 6px;
+}
+
+/* View Order button */
+
+.view-order-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+    padding: 10px 18px;
+    min-height: 40px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Menu item button after adding */
+
+.add-to-order.item-added {
+    opacity: 0.9;
+}
+
+/* Keep navigation buttons aligned on smaller screens */
+
+nav {
+    align-items: center;
+}
+
+nav a {
+    box-sizing: border-box;
+}
