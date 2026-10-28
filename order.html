@@ -1,1 +1,137 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order | GreenOx Cafe</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="index.html" class="logo">GREENOX</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="order.html">Order</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="order-section" id="order">
+            <div class="order-container">
+
+                <div class="order-heading">
+                    <h2>Place Your <span>Order</span></h2>
+                    <p>Fresh food, made for you.</p>
+                </div>
+
+                <form id="greenoxOrderForm">
+
+                    <div class="order-details">
+                        <h3>Order Details</h3>
+                        <div id="cartItems" class="cart-items">
+                            <p class="empty-cart">
+                                No items added yet. Return to the menu to choose your food.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerName">Full Name</label>
+                        <input id="customerName" name="customerName"
+                               type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Mobile Number</label>
+                        <div class="phone-input">
+                            <span class="phone-prefix">+91</span>
+                            <input id="phoneNumber" name="phoneNumber"
+                                   type="tel" inputmode="numeric" maxlength="10"
+                                   pattern="[6-9][0-9]{9}"
+                                   placeholder="10-digit mobile number" required>
+                        </div>
+                        <small id="phoneError" class="field-error"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Address</label>
+                        <textarea id="deliveryAddress" name="deliveryAddress"
+                                  rows="3" autocomplete="street-address"
+                                  required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderNotes">Special Instructions</label>
+                        <textarea id="orderNotes" name="orderNotes"
+                                  rows="2"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method</label>
+                        <select id="paymentMethod" name="paymentMethod" required>
+                            <option value="">Choose payment method</option>
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Card / Net Banking">Card / Net Banking</option>
+                        </select>
+                    </div>
+
+                    <div class="payment-total">
+                        <span>Total Amount to Pay</span>
+                        <strong id="cartTotal">₹0.00</strong>
+                    </div>
+
+                    <input type="hidden" id="orderItems" name="orderItems">
+                    <input type="hidden" id="orderTotal" name="orderTotal" value="0.00">
+
+                    <button type="submit" class="order-submit">
+                        Place Order
+                    </button>
+
+                    <p id="orderMessage" role="status"></p>
+                </form>
+
+                <div id="latestOrder" class="latest-order" hidden>
+                    <h3>Order Submitted!</h3>
+                    <p>Your Order ID:</p>
+                    <strong id="createdOrderId"></strong>
+                    <p>Status: <span id="createdOrderStatus">Received</span></p>
+                    <button type="button" id="copyOrderId" class="order-submit">
+                        Copy Order ID
+                    </button>
+                </div>
+
+                <div class="tracking-box">
+                    <h3>Track Your Order</h3>
+                    <form id="trackingForm">
+                        <div class="form-group">
+                            <label for="trackingOrderId">Order ID</label>
+                            <input id="trackingOrderId"
+                                   placeholder="Enter your order ID" required>
+                        </div>
+                        <button type="submit" class="order-submit">
+                            Track Order
+                        </button>
+                    </form>
+                    <div id="trackingResult" class="tracking-result"></div>
+                </div>
+
+                <p><a href="index.html#menu">← Return to Menu</a></p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© GreenOx Healthy Food Cafe</p>
+    </footer>
+
+</body>
+</html>
+
