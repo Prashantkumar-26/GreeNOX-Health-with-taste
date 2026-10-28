@@ -483,7 +483,147 @@
 
     </div>
 
+</section> 
+
+
+
+    
+<section class="order-section" id="order">
+    <div class="order-container">
+        <div class="order-heading">
+            <p class="order-eyebrow">FRESH FOOD, EASY ORDERING</p>
+            <h2>Place Your <span>Order</span></h2>
+            <p>Enter your details and choose your preferred payment method.</p>
+        </div>
+
+        <form id="greenoxOrderForm">
+            <!-- ORDER DETAILS: CART IS INSIDE THE FORM -->
+            <div class="order-details">
+                <h3>Order Details</h3>
+
+                <div id="cartItems" class="cart-items">
+                    <p class="empty-cart">
+                        No items added yet. Choose something from the menu!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Customer information -->
+            <div class="form-group">
+                <label for="customerName">Full Name</label>
+                <input
+                    type="text"
+                    id="customerName"
+                    name="customerName"
+                    autocomplete="name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Indian Mobile Number</label>
+                <div class="phone-input">
+                    <span class="phone-prefix">+91</span>
+                    <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        inputmode="numeric"
+                        maxlength="10"
+                        placeholder="10-digit mobile number"
+                        autocomplete="tel-national"
+                        pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9."
+                        required>
+                </div>
+                <small id="phoneError" class="field-error" aria-live="polite"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="deliveryAddress">Delivery Address</label>
+                <textarea
+                    id="deliveryAddress"
+                    name="deliveryAddress"
+                    rows="3"
+                    autocomplete="street-address"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="orderNotes">Special Instructions (Optional)</label>
+                <textarea
+                    id="orderNotes"
+                    name="orderNotes"
+                    rows="2"
+                    placeholder="Any food preferences or delivery instructions?"></textarea>
+            </div>
+
+            <!-- Payment method -->
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Card / Net Banking">Card / Net Banking</option>
+                </select>
+            </div>
+
+            <!-- Only place where the total is displayed -->
+            <div class="payment-total">
+                <span>Total Amount to Pay</span>
+                <strong id="cartTotal">₹0.00</strong>
+            </div>
+
+            <!-- Hidden fields used for the order record -->
+            <input type="hidden" id="orderItems" name="orderItems">
+            <input type="hidden" id="orderTotal" name="orderTotal" value="0.00">
+
+            <button type="submit" class="order-submit">
+                Place Order
+            </button>
+
+            <p id="orderMessage" class="order-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Order confirmation -->
+        <div id="latestOrder" class="latest-order" hidden>
+            <h3>Order Submitted!</h3>
+            <p>Your demo order ID is:</p>
+            <strong id="createdOrderId"></strong>
+            <p>Status: <span id="createdOrderStatus">Received</span></p>
+            <p class="demo-notice">
+                Demo only: this order has been saved in your browser.
+                No real payment has been processed.
+            </p>
+            <button type="button" id="copyOrderId" class="order-submit">
+                Copy Order ID
+            </button>
+        </div>
+
+        <!-- Order tracking -->
+        <div class="tracking-box">
+            <h3>Track Your Order</h3>
+            <form id="trackingForm">
+                <div class="form-group">
+                    <label for="trackingOrderId">Enter Order ID</label>
+                    <input
+                        type="text"
+                        id="trackingOrderId"
+                        placeholder="Example: GX-20261028-ABC123"
+                        required>
+                </div>
+                <button type="submit" class="order-submit">
+                    Track Order
+                </button>
+            </form>
+            <div id="trackingResult" class="tracking-result" aria-live="polite"></div>
+        </div>
+    </div>
 </section>
+
+
+
+    
     <!-- ================= CONTACT ================= -->
 
 <section class="contact" id="contact">
