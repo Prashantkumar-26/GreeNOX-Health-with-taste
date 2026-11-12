@@ -1,563 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>GreeNox | Healthy Food Cafe</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="script.js" defer></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreeNox | Healthy Food Cafe at BML Munjal University</title>
+  <meta name="description" content="GreeNox is a healthy food cafe at BML Munjal University. Fresh bowls, wraps, salads, shakes, chai and more. Order online.">
+  <meta name="theme-color" content="#0F3A28">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230F3A28'/%3E%3Cpath d='M46 16C26 16 15 28 15 42c0 3 .6 5 1.2 6 1-8 6-16 16-20-6 6-10 12-11.6 20.8C37 46 46 35 46 16z' fill='%23BFEA6D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@600;700&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="menu.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
-<body>
-    <!-----------header------------>
-<header>
+<body class="page-home">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 10 4 17c0 1.5.3 2.5.6 3 .5-4 3-8 8-10-3 3-5 6-5.8 10.4C16 19.5 20 14 20 4z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4-3-6-7-6 0 4 2 6 7 6z"/><path d="M12 14c0-3 2.5-5 6-5 0 3.5-2 5-6 5z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1 3 3 6 3s6-2 6-3v-4.5"/></symbol>
+    <symbol id="i-chef" viewBox="0 0 24 24"><path d="M6 13.8V19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5.2M6 13.8A4.2 4.2 0 0 1 4 10a4.5 4.5 0 0 1 5.5-4.4A4.5 4.5 0 0 1 18.5 7 4.2 4.2 0 0 1 18 13.8"/></symbol>
+    <symbol id="i-scooter" viewBox="0 0 24 24"><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M7 17h10M12 17V9l3-4h3M5 17v-4h4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-protein" viewBox="0 0 24 24"><path d="M6.5 6.5l2.5 2.5m6.5-6.5l2.5 2.5M7 17l-3.5 3.5m13.5-3.5l3.5 3.5M9.5 9.5l5 5m-3-7l5 5m-7-3l5 5"/></symbol>
+  </defs>
+</svg>
 
-    <div class="logo">
-        Gree<span>Nox</span>
-    </div>
+<a class="skip-link" href="#menu">Skip to menu</a>
 
+<!-- Navigation -->
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#home" aria-label="GreeNox, back to top">
+    <span class="brand-mark"><svg class="ic ic-fill"><use href="#i-leaf"/></svg></span>
+    <span class="brand-name">Gree<b>Nox</b></span>
+  </a>
 
-    <nav>
+  <nav class="site-nav" id="siteNav" aria-label="Main">
+    <a href="#home" class="nav-active">Home</a>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-        <a href="#home">Home</a>
+  <a class="order-link" href="order.html">
+    <svg class="ic"><use href="#i-bag"/></svg>
+    <span class="order-link-text">View your order</span>
+    <span class="count" data-cart-count>0</span>
+  </a>
 
-        <a href="#about">About</a>
-
-        <a href="#menu">Menu</a>
-
-        <a href="#contact">Contact</a>
-
-        <a href="order.html" class="button">View Your Order</a>
-
-    </nav>
-
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+    <svg class="ic ic-open"><use href="#i-menu"/></svg>
+    <svg class="ic ic-close"><use href="#i-close"/></svg>
+  </button>
 </header>
-    <!-- ================= HOME ================= -->
 
+<main>
+<!-- Hero -->
 <section class="hero" id="home">
+  <div class="leaf-decor leaf-tl" aria-hidden="true">🍃</div>
+  <div class="leaf-decor leaf-tr" aria-hidden="true">🌿</div>
+  <div class="leaf-decor leaf-bl" aria-hidden="true">🌱</div>
+  <div class="leaf-decor leaf-br" aria-hidden="true">🍃</div>
 
+  <div class="wrap hero-grid">
 
-    <img
-        src="https://media.licdn.com/dms/image/v2/D5622AQEHxZKmGKGfeg/feedshare-shrink_800/B56Z_rikO8KEAg-/0/1786363135166?e=2147483647&v=beta&t=Y7JRM6lR3lA38Uv5MkiPXwqp3fqiSVjOBqY_A6QEiZs"
-        alt="GreeNox Healthy Food Cafe"
-        class="hero-image"
-    >
-
-
-    <div class="overlay"></div>
-
-
-    <div class="hero-content">
-
-        <p class="welcome">
-            WELCOME TO
-        </p>
-
-
-        <h1>
-            Gree<span>Nox</span>
-        </h1>
-
-
-        <h2>
-            Healthy Food Cafe
-        </h2>
-
-
-        <p class="location">
-            📍 BML Munjal University
-        </p>
-
-
-        <p class="tagline">
-            You are what you eat.
-        </p>
-
-
-        <a href="#menu" class="button">
-            Explore Menu
+    <div class="hero-copy">
+      <p class="place-pill rise" style="--i:0">
+        <span class="pin"><svg class="ic"><use href="#i-pin"/></svg></span>
+        Healthy Food Cafe at BML Munjal University
+      </p>
+      <h1 class="rise" style="--i:1">You are<br>what you<br>eat.</h1>
+      <p class="hero-lead rise" style="--i:2">
+        Fresh bowls, wraps, salads, shakes and chai. Healthy food that is also delicious, made for students.
+      </p>
+      <div class="hero-actions rise" style="--i:3">
+        <a href="#menu" class="btn btn-primary">
+          Explore menu <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg>
         </a>
+        <a href="#menu" class="btn btn-ghost" data-preset="under100">Dishes under ₹100</a>
+        <a href="#menu" class="btn btn-ghost" data-preset="highProtein">💪 High Protein (20g+)</a>
+      </div>
 
+      <div class="hero-stats rise" style="--i:4">
+        <div class="stat-badge">
+          <span class="stat-num">★ 4.9</span>
+          <span class="stat-lbl">1,400+ reviews</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-badge">
+          <span class="stat-num">⚡ 20m</span>
+          <span class="stat-lbl">Campus delivery</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-badge">
+          <span class="stat-num">🌱 100%</span>
+          <span class="stat-lbl">Fresh ingredients</span>
+        </div>
+      </div>
     </div>
 
+    <div class="hero-bowl-art-stage" id="bowlStage" aria-label="Featured Dishes Showcase">
+      <div class="hand-annotation anno-ingredients" id="heroAnnoLeft">
+        <span class="anno-text">Fresh Ingredients</span>
+        <svg class="hand-arrow" viewBox="0 0 50 30" aria-hidden="true">
+          <path d="M10,25 Q30,22 42,8 M35,6 L44,8 L38,16" fill="none" stroke="#2B7A4B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="hand-annotation anno-students" id="heroAnnoRight">
+        <span class="anno-text">Made For Students</span>
+        <svg class="hand-arrow" viewBox="0 0 50 30" aria-hidden="true">
+          <path d="M40,25 Q20,20 8,8 M15,6 L6,8 L12,16" fill="none" stroke="#2B7A4B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="hand-annotation anno-healthy" id="heroAnnoBottom">
+        <svg class="hand-arrow" viewBox="0 0 50 30" aria-hidden="true">
+          <path d="M40,5 Q25,12 10,24 M12,14 L8,25 L20,24" fill="none" stroke="#2B7A4B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="anno-text">Healthy &amp; Delicious</span>
+      </div>
+
+      <!-- Hero bowl showcase -->
+      <div class="hero-bowl-frame" id="heroBowlFrame">
+        <div class="camera-lens-glare" aria-hidden="true"></div>
+        <div class="camera-iris-blade" id="cameraIrisBlade" aria-hidden="true"></div>
+        <div class="camera-flash-fx" id="cameraFlashFx" aria-hidden="true"></div>
+
+        <img src="images/hero-slide-1.jpg" alt="Avocado Veg Burrito Bowl" class="hero-slide-img is-active" data-index="0">
+        <img src="images/hero-slide-2.jpg" alt="High Protein Chicken Bowl" class="hero-slide-img" data-index="1">
+        <img src="images/hero-slide-3.jpg" alt="Fruits & Nuts Smoothie Bowl" class="hero-slide-img" data-index="2">
+        <img src="images/hero-slide-4.jpg" alt="Protein Packed Salad" class="hero-slide-img" data-index="3">
+      </div>
+
+      <div class="hero-carousel-nav" aria-label="Slideshow Controls">
+        <button type="button" class="hero-nav-arrow prev" id="heroSlidePrev" aria-label="Previous dish">‹</button>
+        <div class="hero-nav-dots" id="heroNavDots">
+          <button type="button" class="dot is-active" data-index="0" aria-label="Show dish 1"></button>
+          <button type="button" class="dot" data-index="1" aria-label="Show dish 2"></button>
+          <button type="button" class="dot" data-index="2" aria-label="Show dish 3"></button>
+          <button type="button" class="dot" data-index="3" aria-label="Show dish 4"></button>
+        </div>
+        <button type="button" class="hero-nav-arrow next" id="heroSlideNext" aria-label="Next dish">›</button>
+      </div>
+
+      <div class="hero-chip rise" id="heroChip" style="--i:5">
+        <div class="hero-chip-badge" id="heroChipBadge">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="hero-chip-text">
+          <strong id="heroChipTitle">Avocado Veg Burrito Bowl</strong>
+          <span id="heroChipPrice">₹199</span>
+        </div>
+        <div class="item-control hero-chip-control" id="heroChipControl" data-item="Avocado Veg Burrito Bowl" data-price="199"></div>
+      </div>
+    </div>
+
+  </div>
 </section>
-    <!-- ================= ABOUT ================= -->
 
-<section class="about" id="about">
+<!-- Value props -->
+<section class="value-strip" aria-label="Cafe Values">
+  <div class="wrap">
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg class="ic"><use href="#i-sprout"/></svg></div>
+        <div class="value-copy">
+          <strong>Fresh Ingredients</strong>
+          <p>Locally sourced</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg class="ic"><use href="#i-chef"/></svg></div>
+        <div class="value-copy">
+          <strong>Healthy &amp; Delicious</strong>
+          <p>Nutritious meals</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg class="ic"><use href="#i-scooter"/></svg></div>
+        <div class="value-copy">
+          <strong>Campus Delivery</strong>
+          <p>Fast &amp; reliable</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg class="ic"><use href="#i-heart"/></svg></div>
+        <div class="value-copy">
+          <strong>Made for Students</strong>
+          <p>Affordable &amp; tasty</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-    <div class="section-title">
-
-        <p>ABOUT US</p>
-
-        <h2>
-            Healthy Food. Better You.
-        </h2>
-
+<!-- Category showcase -->
+<section class="explore-categories" id="exploreCategories">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div>
+        <h2 class="section-title">Explore Our Menu</h2>
+        <p class="section-subtitle">Wholesome food for every mood. Freshly prepared, always.</p>
+      </div>
+      <a href="#menu" class="btn btn-pill-outline">View full menu <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg></a>
     </div>
 
+    <div class="cat-pill-grid">
+      <a href="#menu" class="cat-pill-card" data-category-target="bowls">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-bowls.jpg" alt="Bowls" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Bowls</strong>
+        <small>Nutritious &amp; filling</small>
+      </a>
 
+      <a href="#menu" class="cat-pill-card" data-category-target="wraps">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-wraps.jpg" alt="Wraps" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Wraps</strong>
+        <small>On-the-go goodness</small>
+      </a>
 
-    <div class="about-container">
+      <a href="#menu" class="cat-pill-card" data-category-target="salads">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-salads.jpg" alt="Salads" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Salads</strong>
+        <small>Light &amp; fresh</small>
+      </a>
 
+      <a href="#menu" class="cat-pill-card" data-category-target="shakes">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-shakes.jpg" alt="Shakes" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Shakes</strong>
+        <small>Healthy &amp; tasty</small>
+      </a>
 
-        <div class="about-text">
+      <a href="#menu" class="cat-pill-card" data-category-target="chai">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-chai.jpg" alt="Chai &amp; Beverages" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Chai &amp; Beverages</strong>
+        <small>For your chill breaks</small>
+      </a>
 
-            <h3>
-                A New Chapter. Same Promise.
-            </h3>
+      <a href="#menu" class="cat-pill-card" data-category-target="snacks">
+        <div class="cat-circle-wrap">
+          <img src="images/cat-snacks.jpg" alt="Snacks" class="cat-circle-img" loading="lazy">
+        </div>
+        <strong>Snacks</strong>
+        <small>Small bites, big energy</small>
+      </a>
+    </div>
+  </div>
+</section>
 
+<!-- Bestsellers -->
+<section class="bestsellers-section" id="bestsellers">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div>
+        <h2 class="section-title">Our Bestsellers</h2>
+        <p class="section-subtitle">Loved by students, made with the best ingredients.</p>
+      </div>
+      <a href="#menu" class="btn btn-pill-outline">View all <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg></a>
+    </div>
 
-            <p>
-                GreeNox is a healthy food cafe located at
-                BML Munjal University.
-            </p>
+    <div class="bestsellers-grid">
+      <article class="bestseller-card">
+        <div class="bestseller-media">
+          <img src="images/avocado-bowl.jpg" alt="Avocado Veg Burrito Bowl" loading="lazy">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="bestseller-content">
+          <h4>Avocado Veg Burrito Bowl</h4>
+          <div class="bestseller-action-row">
+            <strong class="bestseller-price">₹199</strong>
+            <button type="button" class="btn-pill-add add-to-order" data-item="Avocado Veg Burrito Bowl" data-price="199">Add +</button>
+          </div>
+        </div>
+      </article>
 
+      <article class="bestseller-card">
+        <div class="bestseller-media">
+          <img src="images/paneer-wrap.jpg" alt="Paneer Tikka Wrap" loading="lazy">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="bestseller-content">
+          <h4>Paneer Tikka Wrap</h4>
+          <div class="bestseller-action-row">
+            <strong class="bestseller-price">₹149</strong>
+            <button type="button" class="btn-pill-add add-to-order" data-item="Paneer Tikka Wrap" data-price="149">Add +</button>
+          </div>
+        </div>
+      </article>
 
-            <p>
-                We believe that healthy food should also be
-                delicious, fresh and enjoyable.
-            </p>
+      <article class="bestseller-card">
+        <div class="bestseller-media">
+          <img src="images/protein-salad.jpg" alt="Protein Packed Salad" loading="lazy">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="bestseller-content">
+          <h4>Protein Packed Salad</h4>
+          <div class="bestseller-action-row">
+            <strong class="bestseller-price">₹149</strong>
+            <button type="button" class="btn-pill-add add-to-order" data-item="Protein Packed Salad" data-price="149">Add +</button>
+          </div>
+        </div>
+      </article>
 
+      <article class="bestseller-card">
+        <div class="bestseller-media">
+          <img src="images/protein-shake.jpg" alt="Whey Protein Shake" loading="lazy">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="bestseller-content">
+          <h4>Whey Protein Shake</h4>
+          <div class="bestseller-action-row">
+            <strong class="bestseller-price">₹149</strong>
+            <button type="button" class="btn-pill-add add-to-order" data-item="Whey Protein Shake" data-price="149">Add +</button>
+          </div>
+        </div>
+      </article>
 
-            <p>
-                Our menu provides a variety of beverages,
-                snacks, meals, salads, sandwiches, desserts
-                and healthy choices.
-            </p>
+      <article class="bestseller-card">
+        <div class="bestseller-media">
+          <img src="images/chai.jpg" alt="Kulhad Chai" loading="lazy">
+          <span class="diet-badge diet-veg" title="Pure Vegetarian"><span class="diet-dot"></span></span>
+        </div>
+        <div class="bestseller-content">
+          <h4>Kulhad Chai</h4>
+          <div class="bestseller-action-row">
+            <strong class="bestseller-price">₹20</strong>
+            <button type="button" class="btn-pill-add add-to-order" data-item="Kulhad Chai" data-price="20">Add +</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
+<!-- Testimonials -->
+<section class="reviews-section" id="reviews">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div>
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="section-subtitle">Real people. Real food. Real love.</p>
+      </div>
+      <a href="#reviews" class="btn btn-pill-outline">Read more reviews <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg></a>
+    </div>
 
-            <a href="#menu" class="button">
-                View Our Menu
-            </a>
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-user-row">
+          <img src="images/avatar-aditi.jpg" alt="Aditi Sharma" class="review-avatar" loading="lazy">
+          <div class="review-user-info">
+            <strong>Aditi Sharma</strong>
+            <small>4 days ago</small>
+          </div>
+        </div>
+        <p class="review-quote">"The best healthy food option on campus! Fresh, tasty and affordable. Absolutely love the burrito bowl!"</p>
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      </article>
 
+      <article class="review-card">
+        <div class="review-user-row">
+          <img src="images/avatar-rohan.jpg" alt="Rohan Mehta" class="review-avatar" loading="lazy">
+          <div class="review-user-info">
+            <strong>Rohan Mehta</strong>
+            <small>1 week ago</small>
+          </div>
+        </div>
+        <p class="review-quote">"Perfect for students. Great taste and really good portion sizes. My go-to place for wraps!"</p>
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      </article>
+
+      <article class="review-card">
+        <div class="review-user-row">
+          <img src="images/avatar-nisha.jpg" alt="Nisha Verma" class="review-avatar" loading="lazy">
+          <div class="review-user-info">
+            <strong>Nisha Verma</strong>
+            <small>2 weeks ago</small>
+          </div>
+        </div>
+        <p class="review-quote">"Finally a place that serves healthy food without compromising on taste. The shakes are amazing!"</p>
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about-modern" id="about">
+  <div class="wrap">
+    <div class="about-modern-grid">
+      <div class="about-interior-wrapper">
+        <img src="images/cafe-interior.jpg" alt="GreeNox Healthy Food Cafe Interior at BML Munjal University" class="about-interior-photo" loading="lazy">
+        <div class="interior-leaf-accent" aria-hidden="true">🌿</div>
+      </div>
+
+      <div class="about-modern-copy">
+        <h2 class="section-title">About GreeNox</h2>
+        <p class="about-lead">
+          GreeNox is a healthy food cafe at BML Munjal University, built for students who care about what they eat. We believe good food fuels better learning, better days and a healthier you.
+        </p>
+
+        <div class="about-stats-triplet">
+          <div class="about-stat-tile">
+            <strong class="stat-highlight">100%</strong>
+            <span>Freshly prepared</span>
+          </div>
+          <div class="about-stat-tile">
+            <span class="stat-emoji">🌱</span>
+            <span>Student-friendly prices</span>
+          </div>
+          <div class="about-stat-tile">
+            <span class="stat-emoji">💚</span>
+            <span>A healthier campus community</span>
+          </div>
         </div>
 
-
-
-        <div class="promise-box">
-
-            <div class="leaf">
-                🌿
-            </div>
-
-
-            <h3>
-                Our Promise
-            </h3>
-
-
-            <p>Fresh Ingredients</p>
-
-            <p>Healthy Choices</p>
-
-            <p>Great Taste</p>
-
-            <p>Student Friendly</p>
-
-        </div>
-
-
+        <a href="#menu" class="btn btn-primary">
+          Know more about us <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
     </div>
-
+  </div>
 </section>
-<!-- ================= MENU ================= -->
 
-<!-- ================= MENU ================= -->
-
+<!-- Full menu -->
 <section class="menu" id="menu">
+  <div class="wrap">
 
-    <div class="section-title">
-        <p>OUR MENU</p>
-        <h2>Explore Our Menu</h2>
-        <p class="menu-message">Click on a category to view items</p>
+    <div class="menu-head">
+      <div>
+        <h2>Explore our menu</h2>
+        <p class="menu-meta" id="menuMeta">Pick a category, search, or filter. Tap Add to build your order.</p>
+      </div>
+      <label class="search" for="menuSearch">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <span class="visually-hidden">Search the menu</span>
+        <input id="menuSearch" type="search" placeholder="Search dishes, like paneer" autocomplete="off">
+      </label>
     </div>
 
-    <div class="menu-categories">
+    <div class="featured-combos-section" id="featuredCombosSection">
+      <div class="combos-head">
+        <div>
+          <span class="pill-badge">🔥 Curated for You</span>
+          <h3>Popular Orders &amp; Chef's Combos</h3>
+          <p>Wholesome meal combinations with great taste and savings. Add the complete order in one tap.</p>
+        </div>
+      </div>
+      <div class="combos-grid" id="popularCombosGrid"></div>
+    </div>
 
-        <!-- CHAI -->
-        <details class="menu-category">
-            <summary><span>☕ Chai</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Kulhad Chai</h4><p>Traditional chai served in a kulhad.</p><strong>₹20</strong></div><button type="button" class="add-to-order" data-item="Kulhad Chai" data-price="20">Add +</button></div>
-                <div class="food-item"><div><h4>Adrak Chai</h4><p>Refreshing ginger tea.</p><strong>₹20</strong></div><button type="button" class="add-to-order" data-item="Adrak Chai" data-price="20">Add +</button></div>
-                <div class="food-item"><div><h4>Lemon Tea</h4><p>Light and refreshing lemon tea.</p><strong>₹20</strong></div><button type="button" class="add-to-order" data-item="Lemon Tea" data-price="20">Add +</button></div>
-            </div>
-        </details>
+    <div class="toggles" role="group" aria-label="Menu filters">
+      <button type="button" class="toggle" id="toggleVegOnly" aria-pressed="false">Pure veg</button>
+      <button type="button" class="toggle" id="toggleNoChicken" aria-pressed="false">No chicken</button>
+      <button type="button" class="toggle" id="toggleHighProtein" aria-pressed="false">💪 High protein (20g+)</button>
+      <button type="button" class="toggle" id="toggleUnder100" aria-pressed="false">Under ₹100</button>
+      <button type="button" class="clear-link" id="menuClear" hidden>Clear all</button>
+      <span class="results" id="menuStatus" role="status" aria-live="polite"></span>
+    </div>
 
-        <!-- HOT COFFEE -->
-        <details class="menu-category">
-            <summary><span>☕ Hot Coffee</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Espresso</h4><p>Strong and rich espresso.</p><strong>₹59</strong></div><button type="button" class="add-to-order" data-item="Espresso" data-price="59">Add +</button></div>
-                <div class="food-item"><div><h4>Hot Chocolate</h4><p>Warm chocolate drink.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Hot Chocolate" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Café Americano</h4><p>Classic black coffee.</p><strong>₹69</strong></div><button type="button" class="add-to-order" data-item="Café Americano" data-price="69">Add +</button></div>
-                <div class="food-item"><div><h4>Cappuccino</h4><p>Coffee with milk and foam.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Cappuccino" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Café Latte</h4><p>Smooth coffee with steamed milk.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Café Latte" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Café Mocha</h4><p>Coffee with chocolate.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Café Mocha" data-price="99">Add +</button></div>
-            </div>
-        </details>
+    <div class="chip-bar" id="chipBar">
+      <div class="chips" id="chips" role="group" aria-label="Menu categories"></div>
+    </div>
 
-        <!-- MOCKTAILS -->
-        <details class="menu-category">
-            <summary><span>🍹 Mocktails</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Masala Lemonade</h4><p>Refreshing spicy lemonade.</p><strong>₹69</strong></div><button type="button" class="add-to-order" data-item="Masala Lemonade" data-price="69">Add +</button></div>
-                <div class="food-item"><div><h4>Classic Mint Mojito</h4><p>Fresh mint and lime.</p><strong>₹69</strong></div><button type="button" class="add-to-order" data-item="Classic Mint Mojito" data-price="69">Add +</button></div>
-                <div class="food-item"><div><h4>Watermelon Mint Mojito</h4><p>Watermelon and fresh mint.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Watermelon Mint Mojito" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Blue Lagoon Mint</h4><p>Refreshing blue mint drink.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Blue Lagoon Mint" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Iced Lemon Tea</h4><p>Refreshing chilled lemon tea.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Iced Lemon Tea" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Iced Peach Tea</h4><p>Refreshing chilled peach tea.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Iced Peach Tea" data-price="79">Add +</button></div>
-            </div>
-        </details>
+    <div class="menu-groups" id="menuGroups"></div>
 
-        <!-- BURGER & FRIES -->
-        <details class="menu-category">
-            <summary><span>🍔 Burger & Fries</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Cheesy Veg Burger</h4><p>Vegetable burger with cheese.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Cheesy Veg Burger" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Hot & Spicy Korean Veg Burger</h4><p>Spicy Korean-style veg burger.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Hot & Spicy Korean Veg Burger" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Mania Burger</h4><p>Delicious paneer burger.</p><strong>₹129</strong></div><button type="button" class="add-to-order" data-item="Paneer Mania Burger" data-price="129">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Burger</h4><p>Grilled chicken burger.</p><strong>₹139</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Burger" data-price="139">Add +</button></div>
-                <div class="food-item"><div><h4>Classic French Fries</h4><p>Crispy classic fries.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Classic French Fries" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Peri Peri French Fries</h4><p>Fries with peri peri seasoning.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Peri Peri French Fries" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Korean French Fries</h4><p>Korean-style fries.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Korean French Fries" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Loaded French Fries</h4><p>Fries with delicious toppings.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Loaded French Fries" data-price="99">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- WHOLE WHEAT WRAPS -->
-        <details class="menu-category">
-            <summary><span>🌯 Whole Wheat Wraps</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Grilled Veggies Wrap</h4><p>Fresh grilled vegetables.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Grilled Veggies Wrap" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Tikka Wrap</h4><p>Paneer tikka whole wheat wrap.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Paneer Tikka Wrap" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Hummus Falafel Wrap</h4><p>Falafel and hummus wrap.</p><strong>₹159</strong></div><button type="button" class="add-to-order" data-item="Hummus Falafel Wrap" data-price="159">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Wrap</h4><p>Fresh grilled chicken wrap.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Wrap" data-price="179">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- FRESH JUICE -->
-        <details class="menu-category">
-            <summary><span>🍊 Fresh Juice</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Watermelon Juice</h4><p>Fresh watermelon juice.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Watermelon Juice" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Mix Fruit Juice</h4><p>Refreshing mixed fruits.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Mix Fruit Juice" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Orange Juice</h4><p>Fresh seasonal orange juice.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Orange Juice" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Watermelon Beetroot Fusion</h4><p>Watermelon and beetroot.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="Watermelon Beetroot Fusion" data-price="109">Add +</button></div>
-                <div class="food-item"><div><h4>ABC Red Nutritional Juice</h4><p>Apple, beetroot and carrot.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="ABC Red Nutritional Juice" data-price="109">Add +</button></div>
-                <div class="food-item"><div><h4>Vitamin C Juice</h4><p>Refreshing vitamin C juice.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="Vitamin C Juice" data-price="109">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- SANDWICHES -->
-        <details class="menu-category">
-            <summary><span>🥪 Sandwiches</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Classic Sandwich</h4><p>Simple fresh sandwich.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Classic Sandwich" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Corn Cheese Sandwich</h4><p>Corn and cheese filling.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Corn Cheese Sandwich" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Cheese Aloo Patty Sandwich</h4><p>Potato patty with cheese.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Cheese Aloo Patty Sandwich" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Tikka Sandwich</h4><p>Paneer tikka sandwich.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Paneer Tikka Sandwich" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Korean Sandwich</h4><p>Korean-style chicken sandwich.</p><strong>₹189</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Korean Sandwich" data-price="189">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- SHAKES -->
-        <details class="menu-category">
-            <summary><span>🥤 Shakes</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Strawberry Shake</h4><p>Cold strawberry shake.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Strawberry Shake" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Whey Protein Shake</h4><p>Protein-rich shake.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Whey Protein Shake" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Dark Chocolate Shake</h4><p>Rich chocolate shake.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="Dark Chocolate Shake" data-price="109">Add +</button></div>
-                <div class="food-item"><div><h4>Mix Berry Shake</h4><p>Refreshing berry shake.</p><strong>₹129</strong></div><button type="button" class="add-to-order" data-item="Mix Berry Shake" data-price="129">Add +</button></div>
-                <div class="food-item"><div><h4>Choco Brownie Shake</h4><p>Chocolate brownie shake.</p><strong>₹129</strong></div><button type="button" class="add-to-order" data-item="Choco Brownie Shake" data-price="129">Add +</button></div>
-                <div class="food-item"><div><h4>Peanut Butter Banana Shake</h4><p>Banana and peanut butter.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="Peanut Butter Banana Shake" data-price="109">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- SUBS -->
-        <details class="menu-category">
-            <summary><span>🥖 Subs</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Green Farm Sub</h4><p>Fresh vegetable sub.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Green Farm Sub" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Delight Veggies Sub</h4><p>Fresh vegetable filling.</p><strong>₹119</strong></div><button type="button" class="add-to-order" data-item="Delight Veggies Sub" data-price="119">Add +</button></div>
-                <div class="food-item"><div><h4>Hummus Falafel Sub</h4><p>Falafel and hummus.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Hummus Falafel Sub" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Tikka Sub</h4><p>Paneer tikka filling.</p><strong>₹159</strong></div><button type="button" class="add-to-order" data-item="Paneer Tikka Sub" data-price="159">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Sub</h4><p>Fresh grilled chicken.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Sub" data-price="179">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- COLD COFFEE -->
-        <details class="menu-category">
-            <summary><span>🧊 Cold Coffee</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Iced Americano</h4><p>Refreshing iced coffee.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Iced Americano" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Classic Cold Coffee</h4><p>Classic chilled coffee.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Classic Cold Coffee" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Hazelnut Cold Coffee</h4><p>Hazelnut flavoured coffee.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Hazelnut Cold Coffee" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Iced Latte</h4><p>Cold smooth latte.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Iced Latte" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Iced Cappuccino</h4><p>Cold creamy cappuccino.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Iced Cappuccino" data-price="99">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- DESSERTS -->
-        <details class="menu-category">
-            <summary><span>🍰 Desserts</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Muffin</h4><p>Soft freshly baked muffin.</p><strong>₹79</strong></div><button type="button" class="add-to-order" data-item="Muffin" data-price="79">Add +</button></div>
-                <div class="food-item"><div><h4>Chocolate Fudge Brownie</h4><p>Rich chocolate brownie.</p><strong>₹89</strong></div><button type="button" class="add-to-order" data-item="Chocolate Fudge Brownie" data-price="89">Add +</button></div>
-                <div class="food-item"><div><h4>Choco Lava</h4><p>Warm chocolate dessert.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Choco Lava" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>Chocolate Mousse Cup</h4><p>Creamy chocolate mousse.</p><strong>₹99</strong></div><button type="button" class="add-to-order" data-item="Chocolate Mousse Cup" data-price="99">Add +</button></div>
-                <div class="food-item"><div><h4>New York Cheesecake</h4><p>Classic creamy cheesecake.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="New York Cheesecake" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Blueberry Cheesecake</h4><p>Blueberry cheesecake.</p><strong>₹159</strong></div><button type="button" class="add-to-order" data-item="Blueberry Cheesecake" data-price="159">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- SALADS -->
-        <details class="menu-category">
-            <summary><span>🥗 Salads</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Classic Caesar Salad</h4><p>Fresh Caesar salad.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Classic Caesar Salad" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Protein Packed Salad</h4><p>Protein-rich healthy salad.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Protein Packed Salad" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Hummus Falafel Salad</h4><p>Falafel and hummus salad.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Hummus Falafel Salad" data-price="179">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Tikka Salad</h4><p>Paneer with fresh salad.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Paneer Tikka Salad" data-price="199">Add +</button></div>
-                <div class="food-item"><div><h4>Chicken Caesar Salad</h4><p>Caesar salad with chicken.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Chicken Caesar Salad" data-price="179">Add +</button></div>
-                <div class="food-item"><div><h4>High Protein Chicken Salad</h4><p>Protein-rich chicken salad.</p><strong>₹189</strong></div><button type="button" class="add-to-order" data-item="High Protein Chicken Salad" data-price="189">Add +</button></div>
-                <div class="food-item"><div><h4>Rainbow Fruit Salad</h4><p>Colourful fresh fruits.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Rainbow Fruit Salad" data-price="149">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- WHOLESOME MEALS -->
-        <details class="menu-category">
-            <summary><span>🍱 Wholesome Meals</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>High Protein Chicken Bowl</h4><p>Healthy chicken protein bowl.</p><strong>₹129</strong></div><button type="button" class="add-to-order" data-item="High Protein Chicken Bowl" data-price="129">Add +</button></div>
-                <div class="food-item"><div><h4>Caribbean Chicken Fillets</h4><p>Caribbean-style chicken.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Caribbean Chicken Fillets" data-price="199">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Steak</h4><p>Served with mashed potato.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Steak" data-price="199">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- BURRITO BOWLS -->
-        <details class="menu-category">
-            <summary><span>🌯 Burrito Bowls</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Mexican Chicken Burrito Bowl</h4><p>Mexican-style chicken bowl.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Mexican Chicken Burrito Bowl" data-price="199">Add +</button></div>
-                <div class="food-item"><div><h4>Mexican Veg Burrito Bowl</h4><p>Mexican vegetarian bowl.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Mexican Veg Burrito Bowl" data-price="179">Add +</button></div>
-                <div class="food-item"><div><h4>Peri Peri Paneer Burrito Bowl</h4><p>Peri peri paneer bowl.</p><strong>₹189</strong></div><button type="button" class="add-to-order" data-item="Peri Peri Paneer Burrito Bowl" data-price="189">Add +</button></div>
-                <div class="food-item"><div><h4>Avocado Veg Burrito Bowl</h4><p>Avocado vegetable bowl.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Avocado Veg Burrito Bowl" data-price="199">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- HEALTHY RICE BOWLS -->
-        <details class="menu-category">
-            <summary><span>🍚 Healthy Rice Bowls</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Soya Paneer Rice Bowl</h4><p>Rice with soya paneer.</p><strong>₹169</strong></div><button type="button" class="add-to-order" data-item="Soya Paneer Rice Bowl" data-price="169">Add +</button></div>
-                <div class="food-item"><div><h4>Paneer Steak Rice Bowl</h4><p>Healthy paneer rice bowl.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Paneer Steak Rice Bowl" data-price="179">Add +</button></div>
-                <div class="food-item"><div><h4>Grilled Chicken Rice Bowl</h4><p>Grilled chicken and rice.</p><strong>₹189</strong></div><button type="button" class="add-to-order" data-item="Grilled Chicken Rice Bowl" data-price="189">Add +</button></div>
-                <div class="food-item"><div><h4>Chicken Steak Rice Bowl</h4><p>Chicken steak and rice.</p><strong>₹199</strong></div><button type="button" class="add-to-order" data-item="Chicken Steak Rice Bowl" data-price="199">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- PASTA -->
-        <details class="menu-category">
-            <summary><span>🍝 Pasta</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Alfredo Pasta</h4><p>White sauce pasta.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Alfredo Pasta" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Arrabiata Pasta</h4><p>Red sauce pasta.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Arrabiata Pasta" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Barbaresca Pasta</h4><p>Mixed sauce pasta.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Barbaresca Pasta" data-price="149">Add +</button></div>
-                <div class="food-item"><div><h4>Alfredo Chicken Pasta</h4><p>White sauce chicken pasta.</p><strong>₹169</strong></div><button type="button" class="add-to-order" data-item="Alfredo Chicken Pasta" data-price="169">Add +</button></div>
-                <div class="food-item"><div><h4>Arrabiata Chicken Pasta</h4><p>Red sauce chicken pasta.</p><strong>₹169</strong></div><button type="button" class="add-to-order" data-item="Arrabiata Chicken Pasta" data-price="169">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- SMOOTHIE BOWLS -->
-        <details class="menu-category">
-            <summary><span>🥝 Smoothie Bowls</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Fruits & Nuts Smoothie Bowl</h4><p>Fresh fruits and nuts.</p><strong>₹159</strong></div><button type="button" class="add-to-order" data-item="Fruits & Nuts Smoothie Bowl" data-price="159">Add +</button></div>
-                <div class="food-item"><div><h4>Mix Berries Kiwi & Nuts</h4><p>Berries, kiwi and nuts.</p><strong>₹179</strong></div><button type="button" class="add-to-order" data-item="Mix Berries Kiwi & Nuts" data-price="179">Add +</button></div>
-            </div>
-        </details>
-
-        <!-- TACOS -->
-        <details class="menu-category">
-            <summary><span>🌮 Tacos</span><span class="arrow">▼</span></summary>
-            <div class="items">
-                <div class="food-item"><div><h4>Mexican Veg Taco</h4><p>2 pieces.</p><strong>₹109</strong></div><button type="button" class="add-to-order" data-item="Mexican Veg Taco" data-price="109">Add +</button></div>
-                <div class="food-item"><div><h4>Mexican Chicken Taco</h4><p>2 pieces.</p><strong>₹149</strong></div><button type="button" class="add-to-order" data-item="Mexican Chicken Taco" data-price="149">Add +</button></div>
-            </div>
-        </details>
-
+    <div class="menu-empty" id="menuEmpty" hidden>
+      <p>No dishes match your search and filters.</p>
+      <button type="button" class="btn btn-primary" id="menuReset">Clear filters</button>
     </div>
 
     <p class="gst-note">* GST applicable extra.</p>
-
-    <div class="menu-order-link">
-        
-<a href="order.html" class="button view-order-button">
-    View Order (<span data-cart-count>0</span>)
-</a>
-
-    </div>
-
+  </div>
 </section>
 
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
 
-
-<!-- ================= WHY GREENOX ================= -->
-
-<section class="why">
-
-
-    <div class="section-title">
-
-        <p>WHY GREENOX?</p>
-
-        <h2>
-            Good Food. Good Mood.
-        </h2>
-
+<!-- CTA banner -->
+<section class="banner-cta" aria-label="Order Banner">
+  <div class="wrap">
+    <div class="banner-cta-card">
+      <div class="banner-cta-copy">
+        <h2>Good Food. Better Days.</h2>
+        <p>Order now and enjoy fresh, healthy meals at GreeNox.</p>
+        <div class="banner-cta-actions">
+          <a href="order.html" class="btn btn-lime">
+            Order Now <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a href="#menu" class="btn btn-glass">View Menu</a>
+        </div>
+      </div>
+      <div class="banner-cta-visual">
+        <img src="images/banner-bowl.jpg" alt="Healthy bowls and fresh ingredients" class="banner-bowl-img" loading="lazy">
+      </div>
     </div>
-
-
-
-    <div class="features">
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                🌱
-            </div>
-
-            <h3>
-                Fresh Ingredients
-            </h3>
-
-            <p>
-                Fresh and quality ingredients are used
-                for our meals.
-            </p>
-
-        </div>
-
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ❤️
-            </div>
-
-            <h3>
-                Made With Care
-            </h3>
-
-            <p>
-                Every meal is prepared with attention
-                and care.
-            </p>
-
-        </div>
-
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                🎓
-            </div>
-
-            <h3>
-                Student Friendly
-            </h3>
-
-            <p>
-                Delicious and convenient food options
-                for students.
-            </p>
-
-        </div>
-
-
-    </div>
-
+  </div>
 </section>
 
-
-    <!-- ================= CONTACT ================= -->
-
+<!-- Campus location & map -->
 <section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card-modern">
+      <div class="card-leaf leaf-1" aria-hidden="true">🌿</div>
+      <div class="card-leaf leaf-2" aria-hidden="true">🍃</div>
 
-
-    <div class="contact-content">
-
-        <p class="contact-small">
-            VISIT US
-        </p>
-
-
-        <h2>
-            Find GreenOx
-        </h2>
-
-
-        <p>
-            Come and experience fresh and delicious food
-            at GreenOx Healthy Food Cafe.
-        </p>
-
-
-        <div class="location-box">
-
-            📍 BML Munjal University
-
-            <br>
-
-            Gurugram, Haryana
-
+      <div class="contact-left-col">
+        <div class="contact-header-badges">
+          <span class="pill-badge-mint"><span class="badge-live-dot"></span> BML Munjal University</span>
+          <span class="pill-badge-open"><span class="live-pulse-dot"></span> Open Now • 8 AM – 11 PM</span>
         </div>
 
+        <h2 class="contact-main-heading">Find GreeNox.</h2>
+        <p class="contact-desc">Wholesome food for students. Dine in at the Student Centre or get nutritious bowls, wraps &amp; shakes delivered hot to your hostel room.</p>
 
-        <a href="#home" class="button">
-            Back to Top
-        </a>
+        <div class="contact-location-box">
+          <div class="loc-pin-circle">
+            <svg class="ic"><use href="#i-pin"/></svg>
+          </div>
+          <div class="loc-details">
+            <strong>BML Munjal University Campus</strong>
+            <p id="campusAddressText">NH-48, Kapriwas, Gurugram, Haryana 122413</p>
+          </div>
+          <button type="button" class="btn-copy-address" id="btnCopyAddress" title="Copy Address to clipboard" aria-label="Copy address">
+            <svg class="ic ic-sm" id="copyBtnIcon"><use href="#i-copy"/></svg>
+            <span id="copyBtnLabel">Copy</span>
+          </button>
+        </div>
 
+        <div class="contact-perks-row">
+          <span class="perk-tag">⚡ 15-Min Delivery</span>
+          <span class="perk-tag">🥗 Fresh Ingredients</span>
+          <span class="perk-tag">🛵 Free Over ₹149</span>
+        </div>
+
+        <div class="contact-btn-group">
+          <a class="btn btn-primary btn-glow" href="order.html">
+            Order online <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="https://maps.google.com/?q=BML+Munjal+University" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-map"/></svg> Directions
+          </a>
+          <a class="btn btn-ghost" href="https://wa.me/919876543210?text=Hi%20GreeNox%2C%20I%20have%20a%20question%20about%20my%20order" target="_blank" rel="noopener">
+            <svg class="ic"><use href="#i-whatsapp"/></svg> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right-col">
+        <div class="map-showcase-frame">
+          <div class="map-frame-header">
+            <div class="map-frame-info">
+              <span class="badge-live-dot-green"></span>
+              <strong>BML Munjal University (BMU)</strong>
+              <span class="map-subtag">Student Centre</span>
+            </div>
+            <div class="map-view-toggle" role="group" aria-label="Map style toggle">
+              <button type="button" class="map-pill-btn is-active" id="btnMapStandard">Map</button>
+              <button type="button" class="map-pill-btn" id="btnMapSatellite">Satellite</button>
+            </div>
+          </div>
+
+          <div class="map-frame-body">
+            <iframe
+              id="bmuGoogleMapIframe"
+              class="bmu-map-iframe"
+              src="https://maps.google.com/maps?q=BML+Munjal+University,+Kapriwas,+Haryana&amp;t=m&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+              loading="lazy"
+              allowfullscreen=""
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Official BML Munjal University Map Location">
+            </iframe>
+          </div>
+
+          <div class="map-frame-footer">
+            <div class="map-footer-status">
+              <span class="footer-scooter-icon">🛵</span>
+              <span><strong>Campus Delivery:</strong> Avg. 12–15 mins to all BMU Hostels</span>
+            </div>
+            <a href="https://maps.google.com/?q=BML+Munjal+University" target="_blank" rel="noopener" class="map-open-link">
+              Open in Maps ↗
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-
-
+  </div>
 </section>
-    <!-- ================= FOOTER ================= -->
+</main>
 
-<footer>
+<!-- Footer -->
+<footer class="site-footer-modern">
+  <div class="wrap">
+    <div class="footer-island-bar">
+      <div class="footer-brand-wrap">
+        <a class="footer-brand" href="#home" aria-label="GreeNox, back to top">
+          <span class="brand-mark-sm"><svg class="ic ic-fill"><use href="#i-leaf"/></svg></span>
+          Gree<b>Nox</b>
+        </a>
+        <p class="footer-tagline">You are what you eat.</p>
+      </div>
 
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-    <div class="footer-logo">
-
-        Green<span>Ox</span>
-
+      <div class="footer-meta-wrap">
+        <div class="footer-socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn"><svg class="ic"><use href="#i-instagram"/></svg></a>
+          <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-btn"><svg class="ic"><use href="#i-whatsapp"/></svg></a>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" aria-label="Location" class="social-btn"><svg class="ic"><use href="#i-pin"/></svg></a>
+        </div>
+        <a href="#home" class="to-top-island-btn" aria-label="Scroll to top of page">
+          <span>Top</span>
+          <svg class="ic ic-sm"><use href="#i-arrow-up"/></svg>
+        </a>
+      </div>
     </div>
 
-
-    <p>
-        You are what you eat.
-    </p>
-
-
-    <p class="copyright">
-        © 2026 GreenOx Healthy Food Cafe
-    </p>
-
-
+    <div class="footer-sub-bar">
+      <p>© 2026 GreeNox Cafe • Healthy Food Cafe at BML Munjal University, Gurugram. All rights reserved.</p>
+      <p class="sub-leaf-made">Crafted with 💚 for students, faculty &amp; healthy food lovers.</p>
+    </div>
+  </div>
 </footer>
 
+<!-- Sticky Floating Mobile Cart Bar -->
+<a class="cart-bar" id="cartBar" href="order.html" hidden aria-label="View current order">
+  <div class="cart-bar-lead">
+    <span class="cart-bar-icon-wrap">
+      <svg class="ic"><use href="#i-bag"/></svg>
+      <span class="cart-bar-badge-count" data-cart-count>0</span>
+    </span>
+    <span class="cart-bar-info">
+      <strong><span data-cart-count>0</span> <span data-cart-label>items</span></strong>
+      <span class="cart-bar-price" data-cart-total>₹0</span>
+    </span>
+  </div>
+  <span class="cart-bar-go">
+    View order <svg class="ic ic-sm"><use href="#i-arrow-right"/></svg>
+  </span>
+</a>
 
 </body>
-
 </html>
