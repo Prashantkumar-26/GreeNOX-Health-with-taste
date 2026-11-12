@@ -1,137 +1,297 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Your Order | GreenOx Cafe</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Your Order | GreeNox Healthy Food Cafe</title>
+  <meta name="theme-color" content="#0F3A28">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230F3A28'/%3E%3Cpath d='M46 16C26 16 15 28 15 42c0 3 .6 5 1.2 6 1-8 6-16 16-20-6 6-10 12-11.6 20.8C37 46 46 35 46 16z' fill='%23BFEA6D'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="menu.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
-<body>
+<body class="page-order">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 10 4 17c0 1.5.3 2.5.6 3 .5-4 3-8 8-10-3 3-5 6-5.8 10.4C16 19.5 20 14 20 4z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4-3-6-7-6 0 4 2 6 7 6z"/><path d="M12 14c0-3 2.5-5 6-5 0 3.5-2 5-6 5z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1 3 3 6 3s6-2 6-3v-4.5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4L3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4z"/><path d="M9 4v13M15 7v13"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <g id="leaf-big"><path d="M0,-40 C24,-28 30,2 0,42 C-30,2 -24,-28 0,-40Z"/><path d="M0,-32 L0,40 M0,-12 L-10,-20 M0,-12 L10,-20 M0,6 L-13,-4 M0,6 L13,-4 M0,24 L-9,15 M0,24 L9,15" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.6" stroke-linecap="round"/></g>
+  </defs>
+</svg>
 
-    <header class="site-header">
-        <a href="index.html" class="logo">GREENOX</a>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="index.html#menu">Menu</a>
-            <a href="order.html">Order</a>
-            <a href="index.html#contact">Contact</a>
-        </nav>
-    </header>
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="index.html" aria-label="GreeNox home">
+    <span class="brand-mark"><svg class="ic ic-fill"><use href="#i-leaf"/></svg></span>
+    <span class="brand-name">Gree<b>Nox</b></span>
+  </a>
 
-    <main>
-        <section class="order-section" id="order">
-            <div class="order-container">
+  <nav class="site-nav" id="siteNav" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="index.html#menu">Menu</a>
+    <a href="order.html" aria-current="page">Order</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
 
-                <div class="order-heading">
-                    <h2>Place Your <span>Order</span></h2>
-                    <p>Fresh food, made for you.</p>
-                </div>
+  <a class="order-link" href="index.html#menu">
+    <svg class="ic"><use href="#i-plus"/></svg>
+    <span class="order-link-text">Add more food</span>
+  </a>
 
-                <form id="greenoxOrderForm">
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+    <svg class="ic ic-open"><use href="#i-menu"/></svg>
+    <svg class="ic ic-close"><use href="#i-close"/></svg>
+  </button>
+</header>
 
-                    <div class="order-details">
-                        <h3>Order Details</h3>
-                        <div id="cartItems" class="cart-items">
-                            <p class="empty-cart">
-                                No items added yet. Return to the menu to choose your food.
-                            </p>
-                        </div>
-                    </div>
+<main class="order-main">
+  <div class="wrap">
 
-                    <div class="form-group">
-                        <label for="customerName">Full Name</label>
-                        <input id="customerName" name="customerName"
-                               type="text" autocomplete="name" required>
-                    </div>
+    <div class="order-head">
+      <h1>Place your order</h1>
+      <p>Fresh food, made for you.</p>
+    </div>
 
-                    <div class="form-group">
-                        <label for="phoneNumber">Mobile Number</label>
-                        <div class="phone-input">
-                            <span class="phone-prefix">+91</span>
-                            <input id="phoneNumber" name="phoneNumber"
-                                   type="tel" inputmode="numeric" maxlength="10"
-                                   pattern="[6-9][0-9]{9}"
-                                   placeholder="10-digit mobile number" required>
-                        </div>
-                        <small id="phoneError" class="field-error"></small>
-                    </div>
+    <form id="greenoxOrderForm" class="checkout" novalidate>
 
-                    <div class="form-group">
-                        <label for="deliveryAddress">Delivery Address</label>
-                        <textarea id="deliveryAddress" name="deliveryAddress"
-                                  rows="3" autocomplete="street-address"
-                                  required></textarea>
-                    </div>
+      <div class="checkout-main">
 
-                    <div class="form-group">
-                        <label for="orderNotes">Special Instructions</label>
-                        <textarea id="orderNotes" name="orderNotes"
-                                  rows="2"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="paymentMethod">Payment Method</label>
-                        <select id="paymentMethod" name="paymentMethod" required>
-                            <option value="">Choose payment method</option>
-                            <option value="Cash on Delivery">Cash on Delivery</option>
-                            <option value="UPI">UPI</option>
-                            <option value="Card / Net Banking">Card / Net Banking</option>
-                        </select>
-                    </div>
-
-                    <div class="payment-total">
-                        <span>Total Amount to Pay</span>
-                        <strong id="cartTotal">₹0.00</strong>
-                    </div>
-
-                    <input type="hidden" id="orderItems" name="orderItems">
-                    <input type="hidden" id="orderTotal" name="orderTotal" value="0.00">
-
-                    <button type="submit" class="order-submit">
-                        Place Order
-                    </button>
-
-                    <p id="orderMessage" role="status"></p>
-                </form>
-
-                <div id="latestOrder" class="latest-order" hidden>
-                    <h3>Order Submitted!</h3>
-                    <p>Your Order ID:</p>
-                    <strong id="createdOrderId"></strong>
-                    <p>Status: <span id="createdOrderStatus">Received</span></p>
-                    <button type="button" id="copyOrderId" class="order-submit">
-                        Copy Order ID
-                    </button>
-                </div>
-
-                <div class="tracking-box">
-                    <h3>Track Your Order</h3>
-                    <form id="trackingForm">
-                        <div class="form-group">
-                            <label for="trackingOrderId">Order ID</label>
-                            <input id="trackingOrderId"
-                                   placeholder="Enter your order ID" required>
-                        </div>
-                        <button type="submit" class="order-submit">
-                            Track Order
-                        </button>
-                    </form>
-                    <div id="trackingResult" class="tracking-result"></div>
-                </div>
-
-                <p><a href="index.html#menu">← Return to Menu</a></p>
-
-            </div>
+        <section class="panel" aria-labelledby="stepItems">
+          <h2 class="panel-title" id="stepItems"><span class="step-badge">1</span>Your items</h2>
+          <div id="cartItems" class="cart-items">
+            <p class="empty-cart">No items added yet. Return to the menu to choose your food.</p>
+          </div>
         </section>
-    </main>
 
-    <footer>
-        <p>© GreenOx Healthy Food Cafe</p>
-    </footer>
+        <section class="panel" aria-labelledby="stepDetails">
+          <h2 class="panel-title" id="stepDetails"><span class="step-badge">2</span>Delivery details</h2>
+
+          <div class="field-row">
+            <div class="form-group">
+              <label for="customerName">Full name <span class="required-star">*</span></label>
+              <input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phoneNumber">Mobile number <span class="required-star">*</span></label>
+              <div class="phone-input">
+                <span class="phone-prefix">+91</span>
+                <input id="phoneNumber" name="phoneNumber" type="tel" inputmode="numeric" maxlength="10"
+                       pattern="[6-9][0-9]{9}" placeholder="10-digit mobile number" autocomplete="tel-national" required>
+              </div>
+              <small id="phoneError" class="field-error" role="alert"></small>
+            </div>
+          </div>
+
+          <div class="campus-address-builder">
+            <div class="form-group">
+              <label for="hostelSelect">BMU Campus Hostel / Building <span class="required-star">*</span></label>
+              <div class="select-wrap">
+                <select id="hostelSelect" class="form-select" required>
+                  <option value="" disabled selected>Select your hostel or campus building...</option>
+                  <optgroup label="Boys Hostels">
+                    <option value="BSH (Bhagat Singh Hostel)">BSH (Bhagat Singh Hostel)</option>
+                    <option value="RTH (Ratan Tata Hostel)">RTH (Ratan Tata Hostel)</option>
+                    <option value="Vikram Sarabhai Hostel">Vikram Sarabhai Hostel</option>
+                  </optgroup>
+                  <optgroup label="Girls Hostels">
+                    <option value="Gargi Hostel">Gargi Hostel</option>
+                    <option value="KCH (Kalpana Chawla Hostel)">KCH (Kalpana Chawla Hostel)</option>
+                  </optgroup>
+                  <optgroup label="Academic &amp; Common Campus Areas">
+                    <option value="Student Centre / Mess">Student Centre / Mess</option>
+                    <option value="Academic Block 1">Academic Block 1</option>
+                    <option value="Academic Block 2">Academic Block 2</option>
+                    <option value="Central Library">Central Library</option>
+                    <option value="Faculty / Admin Block">Faculty / Admin Block</option>
+                    <option value="Sports Complex">Sports Complex</option>
+                  </optgroup>
+                  <option value="Other Campus Location">Other Campus Location</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="form-group">
+                <label for="roomNumber">Room / Floor / Desk No. <span class="required-star">*</span></label>
+                <input id="roomNumber" type="text" placeholder="e.g. Room 304, 3rd Floor" required autocomplete="off">
+              </div>
+
+              <div class="form-group">
+                <label for="landmarkNote">Nearby Landmark <span class="optional">optional</span></label>
+                <input id="landmarkNote" type="text" placeholder="e.g. Near Wing B Lift / Common Room" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="address-preview-pill" id="addressPreviewPill" hidden>
+              <svg class="ic ic-sm"><use href="#i-pin"/></svg>
+              <span id="addressPreviewText"></span>
+            </div>
+
+            <!-- Keep deliveryAddress synced as complete address for JSON export & storage -->
+            <textarea id="deliveryAddress" name="deliveryAddress" rows="2" class="visually-hidden" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="orderNotes">Special instructions <span class="optional">optional</span></label>
+            <textarea id="orderNotes" name="orderNotes" rows="2" placeholder="e.g. Less spicy, keep sauce separate, call upon arrival"></textarea>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="stepPay">
+          <h2 class="panel-title" id="stepPay"><span class="step-badge">3</span>Payment method</h2>
+          
+          <div class="payment-options-grid" id="paymentOptionsGrid">
+            <label class="payment-card is-selected" data-payment="UPI">
+              <input type="radio" name="paymentRadio" value="UPI" checked class="visually-hidden">
+              <span class="pay-icon">📱</span>
+              <div class="pay-info">
+                <strong>UPI Instant Payment</strong>
+                <small>Google Pay, PhonePe, Paytm, BHIM</small>
+              </div>
+              <span class="pay-check">✓</span>
+            </label>
+
+            <label class="payment-card" data-payment="Cash on Delivery">
+              <input type="radio" name="paymentRadio" value="Cash on Delivery" class="visually-hidden">
+              <span class="pay-icon">💵</span>
+              <div class="pay-info">
+                <strong>Cash on Delivery</strong>
+                <small>Pay at your doorstep via Cash or QR</small>
+              </div>
+              <span class="pay-check">✓</span>
+            </label>
+
+            <label class="payment-card" data-payment="Card / Net Banking">
+              <input type="radio" name="paymentRadio" value="Card / Net Banking" class="visually-hidden">
+              <span class="pay-icon">💳</span>
+              <div class="pay-info">
+                <strong>Card / Net Banking</strong>
+                <small>Debit, Credit cards & Net Banking</small>
+              </div>
+              <span class="pay-check">✓</span>
+            </label>
+          </div>
+
+          <select id="paymentMethod" name="paymentMethod" required class="visually-hidden">
+            <option value="UPI" selected>UPI</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="Card / Net Banking">Card / Net Banking</option>
+          </select>
+        </section>
+
+      </div>
+
+      <aside class="bill" aria-label="Order total">
+        <h2>Order summary</h2>
+        <p class="bill-count"><span data-cart-count>0</span> <span data-cart-label>items</span></p>
+
+        <div class="bill-breakdown">
+          <div class="bill-row">
+            <span>Items subtotal</span>
+            <strong id="billSubtotal">₹0.00</strong>
+          </div>
+          <div class="bill-row">
+            <span>Campus delivery</span>
+            <span class="free-badge">FREE</span>
+          </div>
+          <div class="bill-row">
+            <span>Taxes & GST (5%)</span>
+            <span id="billTaxes">₹0.00</span>
+          </div>
+        </div>
+
+        <div class="payment-total">
+          <span>Grand total to pay</span>
+          <strong id="cartTotal">₹0.00</strong>
+        </div>
+        <p class="bill-note">⚡ Guaranteed 20-min campus delivery</p>
+        <button type="submit" class="order-submit" id="placeOrder">Place order</button>
+        <p id="orderMessage" class="form-message" role="status"></p>
+      </aside>
+
+    </form>
+
+    <div id="latestOrder" class="panel latest-order" hidden>
+      <span class="success-mark"><svg class="ic"><use href="#i-check"/></svg></span>
+      <div class="latest-body">
+        <h2>Order submitted!</h2>
+        <p>Your order ID</p>
+        <strong id="createdOrderId" class="order-id"></strong>
+        <p>Status: <span id="createdOrderStatus" class="status-chip">Received</span></p>
+      </div>
+      <div class="latest-actions">
+        <a id="btnSendWhatsApp" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <svg class="ic"><use href="#i-whatsapp"/></svg>
+          Send to Kitchen on WhatsApp
+        </a>
+        <button type="button" id="copyOrderId" class="btn btn-ghost">
+          <svg class="ic"><use href="#i-copy"/></svg><span id="copyLabel">Copy order ID</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Order history -->
+    <section class="panel orders-history-panel" id="recentOrdersSection" aria-labelledby="ordersSectionTitle">
+      <div class="panel-head-flex">
+        <div>
+          <h2 class="panel-title" id="ordersSectionTitle">
+            <svg class="ic"><use href="#i-bag"/></svg> Your Different Orders
+          </h2>
+          <p class="panel-sub">Browse different placed orders, repeat favorite meals, or track live delivery.</p>
+        </div>
+        <span class="count-tag" id="ordersCountTag">0 Orders</span>
+      </div>
+
+      <div id="ordersCardsContainer" class="orders-cards-container">
+        <!-- Rendered by script.js -->
+      </div>
+    </section>
+
+    <section class="panel tracking-box" aria-labelledby="trackTitle">
+      <h2 class="panel-title" id="trackTitle">Track your order</h2>
+      <form id="trackingForm" class="track-form">
+        <div class="form-group">
+          <label for="trackingOrderId">Order ID</label>
+          <input id="trackingOrderId" placeholder="Enter your order ID, like GX-20261029-AB12CD" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Track order</button>
+      </form>
+      <div id="trackingResult" class="tracking-result" aria-live="polite"></div>
+      <p class="track-note">Tracking works on the device and browser where you placed the order.</p>
+    </section>
+
+    <p class="back-link"><a href="index.html#menu">Return to menu</a></p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <a class="footer-brand" href="index.html">Gree<b>Nox</b></a>
+      <p>You are what you eat.</p>
+    </div>
+    <p class="copyright">© 2026 GreeNox Healthy Food Cafe</p>
+    <a class="to-top" href="#siteHeader">Back to top</a>
+  </div>
+</footer>
 
 </body>
 </html>
-
